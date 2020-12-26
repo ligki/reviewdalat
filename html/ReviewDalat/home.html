@@ -1,179 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Review Đà Lạt</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-      crossorigin="anonymous"
-    />
-    <script src="https://kit.fontawesome.com/43a96dae9b.js"></script>
-    <link rel="stylesheet" href="home.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  </head>
-  <body>
-    <div class="jumbotron text-center text-white banner">
-      <h1>
-        <img class="logo rounded-circle" src="img/logo.png" />Review Đà Lạt
-      </h1>
-      <p>
-        Review về Đà Lạt, các địa danh, quán cafe, homestay, đồ ăn... cái gì
-        cũng có!
-      </p>
-      <form
-        class="form-inline d-flex justify-content-center md-form form-sm active-purple active-purple-2 mt-2"
-      >
-        <i class="fas fa-search" aria-hidden="true"></i>
-        <input
-          class="form-control form-control-sm ml-3 w-75"
-          type="text"
-          placeholder="Search"
-          aria-label="Search"
-        />
-      </form>
-    </div>
 
-    <div class="container">
-      <div class="home-main row">
-        <div class="col-sm-8 border border-primary">
-          <!-- Địa danh -->
-          <div class="home-main-element">
-            <div class="element-header place text-success">
-              <i class="fas fa-map-marker-alt element-header_icon"></i
-              ><span>Địa danh</span>
-              <div class="top-vote">
-                <button type="button" class="btn btn-primary">
-                  <i class="fas fa-thumbs-up icon_like"></i>Top xịn
-                </button>
-                <button type="button" class="btn btn-danger">
-                  <i class="fas fa-thumbs-down icon_dislike"></i>Top bựa
-                </button>
+<head>
+  <title>Review Đà Lạt</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
+  <script src="https://kit.fontawesome.com/43a96dae9b.js"></script>
+  <link rel="stylesheet" href="home.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="jumbotron text-center text-white banner">
+    <h1>
+      <img class="logo rounded-circle" src="img/logo.png" />Review Đà Lạt
+    </h1>
+    <p>
+      Review về Đà Lạt, các địa danh, quán cafe, homestay, đồ ăn... cái gì
+      cũng có!
+    </p>
+    <form class="form-inline d-flex justify-content-center md-form form-sm active-purple active-purple-2 mt-2">
+      <i class="fas fa-search" aria-hidden="true"></i>
+      <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" />
+    </form>
+  </div>
+
+  <div class="container">
+    <div class="home-main row">
+      <div class="col-sm-8 border border-primary">
+        <!-- Địa danh -->
+        <div class="home-main-element">
+          <div class="element-header place text-success">
+            <i class="fas fa-map-marker-alt element-header_icon"></i><span>Địa danh</span>
+            <div class="top-vote">
+              <button type="button" class="btn btn-primary">
+                <i class="fas fa-thumbs-up icon_like"></i>Top xịn
+              </button>
+              <button type="button" class="btn btn-danger">
+                <i class="fas fa-thumbs-down icon_dislike"></i>Top bựa
+              </button>
+            </div>
+          </div>
+          <div class="element-wrap">
+            <!-- Each element -->
+            <div class="element row border">
+              <div class="element-avatar">
+                <img class="rounded-circle z-depth-2" alt="100x100"
+                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" data-holder-rendered="true" />
+              </div>
+              <div class="element-detail">
+                <div class="element-detail_line">
+                  <span class="element-name text-primary">
+                    <a href="#">Quảng trường</a>
+                  </span>
+                  <span class="element-rating">
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star-half-alt text-warning"></i>
+                  </span>
+                  <span class="element-votes"> (100) </span>
+                </div>
+
+                <div class="element-detail_line element-address">
+                  <i class="fas fa-map-marker-alt icon_address"></i>
+                  Bà Huyện Thanh Quan, Phường 1, Thành phố Đà Lạt, Lâm Đồng
+                </div>
+
+                <p class="element-quote">
+                  <i class="fas fa-quote-right icon-quote"></i><span class="element-quote_quote">Lorem ipsum dolor sit
+                    amet, consectetur adipisicing
+                    elit...</span>
+                </p>
               </div>
             </div>
-            <div class="element-wrap">
-              <div class="element row border">
-                <div class="element-avatar">
-                  <img
-                    class="rounded-circle z-depth-2"
-                    alt="100x100"
-                    src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
-                    data-holder-rendered="true"
-                  />
-                </div>
-                <div class="element-detail">
-                  <div class="element-detail_line">
-                    <span class="element-name text-primary">
-                      <a href="#">Quảng trường</a>
-                    </span>
-                    <span class="element-rating">
-                      <i class="fas fa-star text-warning"></i>
-                      <i class="fas fa-star text-warning"></i>
-                      <i class="fas fa-star text-warning"></i>
-                      <i class="fas fa-star-half-alt text-warning"></i>
-                    </span>
-                    <span class="element-votes"> (100) </span>
-                  </div>
 
-                  <div class="element-detail_line element-address">
-                    <i class="fas fa-map-marker-alt"></i>
-                    Bà Huyện Thanh Quan, Phường 1, Thành phố Đà Lạt, Lâm Đồng
-                  </div>
-
-                  <p class="element-quote">
-                    <i class="fas fa-quote-right"></i
-                    ><span class="element-quote_quote"
-                      >Lorem ipsum dolor sit amet, consectetur adipisicing
-                      elit...</span
-                    >
-                  </p>
-                </div>
+            <div class="element row border">
+              <div class="element-avatar">
+                <img class="rounded-circle z-depth-2" alt="100x100"
+                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" data-holder-rendered="true" />
               </div>
-
-              <div class="element row border">
-                <div class="element-avatar">
-                  <img
-                    class="rounded-circle z-depth-2"
-                    alt="100x100"
-                    src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
-                    data-holder-rendered="true"
-                  />
+              <div class="element-detail">
+                <div class="element-detail_line">
+                  <span class="element-name text-primary">
+                    <a href="#">Quảng trường</a>
+                  </span>
+                  <span class="element-rating">
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star-half-alt text-warning"></i>
+                  </span>
+                  <span class="element-votes"> (100) </span>
                 </div>
-                <div class="element-detail">
-                  <div class="element-detail_line">
-                    <span class="element-name text-primary">
-                      <a href="#">Quảng trường</a>
-                    </span>
-                    <span class="element-rating">
-                      <i class="fas fa-star text-warning"></i>
-                      <i class="fas fa-star text-warning"></i>
-                      <i class="fas fa-star text-warning"></i>
-                      <i class="fas fa-star-half-alt text-warning"></i>
-                    </span>
-                    <span class="element-votes"> (100) </span>
-                  </div>
 
-                  <div class="element-detail_line element-address">
-                    <i class="fas fa-map-marker-alt"></i>
-                    Bà Huyện Thanh Quan, Phường 1, Thành phố Đà Lạt, Lâm Đồng
-                  </div>
-
-                  <p class="element-quote">
-                    <i class="fas fa-quote-right"></i
-                    ><span class="element-quote_quote"
-                      >Lorem ipsum dolor sit amet, consectetur adipisicing
-                      elit...</span
-                    >
-                  </p>
+                <div class="element-detail_line element-address">
+                  <i class="fas fa-map-marker-alt icon_address"></i>
+                  Bà Huyện Thanh Quan, Phường 1, Thành phố Đà Lạt, Lâm Đồng
                 </div>
+
+                <p class="element-quote">
+                  <i class="fas fa-quote-right icon-quote"></i><span class="element-quote_quote">Lorem ipsum dolor sit
+                    amet, consectetur adipisicing
+                    elit...</span>
+                </p>
               </div>
+            </div>
 
-              <div class="element row border">
-                <div class="element-avatar">
-                  <img
-                    class="rounded-circle z-depth-2"
-                    alt="100x100"
-                    src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
-                    data-holder-rendered="true"
-                  />
-                </div>
-                <div class="element-detail">
-                  <div class="element-detail_line">
-                    <span class="element-name text-primary">
-                      <a href="#">Quảng trường</a>
-                    </span>
-                    <span class="element-rating">
-                      <i class="fas fa-star text-warning"></i>
-                      <i class="fas fa-star text-warning"></i>
-                      <i class="fas fa-star text-warning"></i>
-                      <i class="fas fa-star-half-alt text-warning"></i>
-                    </span>
-                    <span class="element-votes"> (100) </span>
-                  </div>
-
-                  <div class="element-detail_line element-address">
-                    <i class="fas fa-map-marker-alt"></i>
-                    Bà Huyện Thanh Quan, Phường 1, Thành phố Đà Lạt, Lâm Đồng
-                  </div>
-
-                  <p class="element-quote">
-                    <i class="fas fa-quote-right"></i
-                    ><span class="element-quote_quote"
-                      >Lorem ipsum dolor sit amet, consectetur adipisicing
-                      elit...</span
-                    >
-                  </p>
-                </div>
+            <div class="element row border">
+              <div class="element-avatar">
+                <img class="rounded-circle z-depth-2" alt="100x100"
+                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" data-holder-rendered="true" />
               </div>
-              
+              <div class="element-detail">
+                <div class="element-detail_line">
+                  <span class="element-name text-primary">
+                    <a href="#">Quảng trường</a>
+                  </span>
+                  <span class="element-rating">
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star-half-alt text-warning"></i>
+                  </span>
+                  <span class="element-votes"> (100) </span>
+                </div>
+
+                <div class="element-detail_line element-address">
+                  <i class="fas fa-map-marker-alt icon_address"></i>
+                  Bà Huyện Thanh Quan, Phường 1, Thành phố Đà Lạt, Lâm Đồng
+                </div>
+
+                <p class="element-quote">
+                  <i class="fas fa-quote-right icon-quote"></i><span class="element-quote_quote">Lorem ipsum dolor sit
+                    amet, consectetur adipisicing
+                    elit...</span>
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Pagination -->
+          <nav aria-label="...">
+            <ul class="pagination">
+              <li class="page-item disabled">
+                <span class="page-link">Previous</span>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item active">
+                <span class="page-link">
+                  2
+                  <span class="sr-only">(current)</span>
+                </span>
+              </li>
+              <li class="page-item">
+                <span class="page-link"> ... </span>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">99</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <!-- Quán cafe -->
+        <div class="home-main-element">
+          <div class="element-header place text-success">
+            <i class="fas fa-coffee element-header_icon"></i><span>Quán cafe</span>
+            <div class="top-vote">
+              <button type="button" class="btn btn-primary">
+                <i class="fas fa-thumbs-up icon_like"></i>Top xịn
+              </button>
+              <button type="button" class="btn btn-danger">
+                <i class="fas fa-thumbs-down icon_dislike"></i>Top bựa
+              </button>
+            </div>
+          </div>
+          <div class="element-wrap">
+            <!-- Each element -->
+            <div class="element row border">
+              <div class="element-avatar">
+                <img class="rounded-circle z-depth-2" alt="100x100"
+                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" data-holder-rendered="true" />
+              </div>
+              <div class="element-detail">
+                <div class="element-detail_line">
+                  <span class="element-name text-primary">
+                    <a href="#">Kong</a>
+                  </span>
+                  <span class="element-rating">
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star-half-alt text-warning"></i>
+                  </span>
+                  <span class="element-votes"> (100) </span>
+                </div>
+
+                <div class="element-detail_line element-address">
+                  <i class="fas fa-map-marker-alt icon_address"></i>
+                  Dã Chiến, Phường 11, Thành phố Đà Lạt, Lâm Đồng
+                </div>
+
+                <div class="element-detail_line element-phone">
+                  <i class="fas fa-phone-volume icon_phone"></i>
+                  090 999 41 25
+                </div>
+
+                <p class="element-quote">
+                  <i class="fas fa-quote-right icon-quote"></i><span class="element-quote_quote">Lorem ipsum dolor sit
+                    amet, consectetur adipisicing
+                    elit...</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="element row border">
+              <div class="element-avatar">
+                <img class="rounded-circle z-depth-2" alt="100x100"
+                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" data-holder-rendered="true" />
+              </div>
+              <div class="element-detail">
+                <div class="element-detail_line">
+                  <span class="element-name text-primary">
+                    <a href="#">Kong</a>
+                  </span>
+                  <span class="element-rating">
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star-half-alt text-warning"></i>
+                  </span>
+                  <span class="element-votes"> (100) </span>
+                </div>
+
+                <div class="element-detail_line element-address">
+                  <i class="fas fa-map-marker-alt icon_address"></i>
+                  Dã Chiến, Phường 11, Thành phố Đà Lạt, Lâm Đồng
+                </div>
+
+                <div class="element-detail_line element-phone">
+                  <i class="fas fa-phone-volume icon_phone"></i>
+                  090 999 41 25
+                </div>
+
+                <p class="element-quote">
+                  <i class="fas fa-quote-right icon-quote"></i><span class="element-quote_quote">Lorem ipsum dolor sit
+                    amet, consectetur adipisicing
+                    elit...</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="element row border">
+              <div class="element-avatar">
+                <img class="rounded-circle z-depth-2" alt="100x100"
+                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" data-holder-rendered="true" />
+              </div>
+              <div class="element-detail">
+                <div class="element-detail_line">
+                  <span class="element-name text-primary">
+                    <a href="#">Kong</a>
+                  </span>
+                  <span class="element-rating">
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star-half-alt text-warning"></i>
+                  </span>
+                  <span class="element-votes"> (100) </span>
+                </div>
+
+                <div class="element-detail_line element-address">
+                  <i class="fas fa-map-marker-alt icon_address"></i>
+                  Bà Huyện Thanh Quan, Phường 1, Thành phố Đà Lạt, Lâm Đồng
+                </div>
+
+                <div class="element-detail_line element-phone">
+                  <i class="fas fa-phone-volume icon_phone"></i>
+                  090 999 41 25
+                </div>
+
+                <p class="element-quote">
+                  <i class="fas fa-quote-right icon-quote"></i><span class="element-quote_quote">Lorem ipsum dolor sit
+                    amet, consectetur adipisicing
+                    elit...</span>
+                </p>
+              </div>
             </div>
 
             <!-- Pagination -->
@@ -198,179 +318,378 @@
                 </li>
               </ul>
             </nav>
+
           </div>
 
-          <div class="home-main-element">
-            <h3>Quán cafe</h3>
-            <div class="element row border">
-              <div class="element-avatar">
-                <img
-                  class="rounded-circle z-depth-2"
-                  alt="100x100"
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
-                  data-holder-rendered="true"
-                />
-              </div>
-              <div class="element-detail">
-                <div class="element-detail_line">
-                  <span class="element-name text-primary"> Quảng trường </span>
-                  <span class="element-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                  </span>
-                  <span class="element-votes"> (100) </span>
-                </div>
-
-                <div class="element-detail_line element-address">
-                  <i class="fas fa-map-marker-alt"></i>
-                  Bà Huyện Thanh Quan, Phường 1, Thành phố Đà Lạt, Lâm Đồng
-                </div>
-
-                <p class="element-quote">
-                  <i class="fas fa-quote-right"></i
-                  ><span class="element-quote_quote"
-                    >Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit...</span
-                  >
-                </p>
-              </div>
-            </div>
-
-            <div class="element row border">
-              <div class="element-avatar">
-                <img
-                  class="rounded-circle z-depth-2"
-                  alt="100x100"
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
-                  data-holder-rendered="true"
-                />
-              </div>
-              <div class="element-detail">
-                <div class="element-detail_line">
-                  <span class="element-name text-primary"> Quảng trường </span>
-                  <span class="element-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                  </span>
-                  <span class="element-votes"> (100) </span>
-                </div>
-
-                <div class="element-detail_line element-address">
-                  <i class="fas fa-map-marker-alt"></i>
-                  Bà Huyện Thanh Quan, Phường 1, Thành phố Đà Lạt, Lâm Đồng
-                </div>
-
-                <p class="element-quote">
-                  <i class="fas fa-quote-right"></i
-                  ><span class="element-quote_quote"
-                    >Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit...</span
-                  >
-                </p>
-              </div>
-            </div>
-
-            <div class="element row border">
-              <div class="element-avatar">
-                <img
-                  class="rounded-circle z-depth-2"
-                  alt="100x100"
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
-                  data-holder-rendered="true"
-                />
-              </div>
-              <div class="element-detail">
-                <div class="element-detail_line">
-                  <span class="element-name text-primary"> Quảng trường </span>
-                  <span class="element-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                  </span>
-                  <span class="element-votes"> (100) </span>
-                </div>
-
-                <div class="element-detail_line element-address">
-                  <i class="fas fa-map-marker-alt"></i>
-                  Bà Huyện Thanh Quan, Phường 1, Thành phố Đà Lạt, Lâm Đồng
-                </div>
-
-                <p class="element-quote">
-                  <i class="fas fa-quote-right"></i
-                  ><span class="element-quote_quote"
-                    >Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit...</span
-                  >
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="home-main-element">
-            <h3>Homestay</h3>
-            <div class="row border">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-              <p>
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris...
-              </p>
-            </div>
-            <div class="row border">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-              <p>
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris...
-              </p>
-            </div>
-            <div class="row border">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-              <p>
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris...
-              </p>
-            </div>
-          </div>
-
-          <div class="home-main-element">
-            <h3>Đồ ăn</h3>
-            <div class="row border">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-              <p>
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris...
-              </p>
-            </div>
-            <div class="row border">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-              <p>
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris...
-              </p>
-            </div>
-            <div class="row border">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-              <p>
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris...
-              </p>
-            </div>
-          </div>
         </div>
 
-        <div class="side-bar col-sm-4 border border-primary">
-          <h3>Column 2</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-          <p>
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris...
+        <!-- Homestay, Khách sạn -->
+        <div class="home-main-element">
+          <div class="element-header place text-success">
+            <i class="fas fa-house-user element-header_icon"></i><span>Homestay, Khách sạn</span>
+            <div class="top-vote">
+              <button type="button" class="btn btn-primary">
+                <i class="fas fa-thumbs-up icon_like"></i>Top xịn
+              </button>
+              <button type="button" class="btn btn-danger">
+                <i class="fas fa-thumbs-down icon_dislike"></i>Top bựa
+              </button>
+            </div>
+          </div>
+          <div class="element-wrap">
+            <!-- Each element -->
+            <div class="element row border">
+              <div class="element-avatar">
+                <img class="rounded-circle z-depth-2" alt="100x100"
+                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" data-holder-rendered="true" />
+              </div>
+              <div class="element-detail">
+                <div class="element-detail_line">
+                  <span class="element-name text-primary">
+                    <a href="#">Dream comes true</a>
+                  </span>
+                  <span class="element-rating">
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star-half-alt text-warning"></i>
+                  </span>
+                  <span class="element-votes"> (100) </span>
+                </div>
+
+                <div class="element-detail_line element-address">
+                  <i class="fas fa-map-marker-alt icon_address"></i>
+                  Dã Chiến, Phường 11, Thành phố Đà Lạt, Lâm Đồng
+                </div>
+
+                <div class="element-detail_line element-phone">
+                  <i class="fas fa-phone-volume icon_phone"></i>
+                  090 999 41 25
+                </div>
+
+                <p class="element-quote">
+                  <i class="fas fa-quote-right icon-quote"></i><span class="element-quote_quote">Lorem ipsum dolor sit
+                    amet, consectetur adipisicing
+                    elit...</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="element row border">
+              <div class="element-avatar">
+                <img class="rounded-circle z-depth-2" alt="100x100"
+                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" data-holder-rendered="true" />
+              </div>
+              <div class="element-detail">
+                <div class="element-detail_line">
+                  <span class="element-name text-primary">
+                    <a href="#">Dream comes true</a>
+                  </span>
+                  <span class="element-rating">
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star-half-alt text-warning"></i>
+                  </span>
+                  <span class="element-votes"> (100) </span>
+                </div>
+
+                <div class="element-detail_line element-address">
+                  <i class="fas fa-map-marker-alt icon_address"></i>
+                  Dã Chiến, Phường 11, Thành phố Đà Lạt, Lâm Đồng
+                </div>
+
+                <div class="element-detail_line element-phone">
+                  <i class="fas fa-phone-volume icon_phone"></i>
+                  090 999 41 25
+                </div>
+
+                <p class="element-quote">
+                  <i class="fas fa-quote-right icon-quote"></i><span class="element-quote_quote">Lorem ipsum dolor sit
+                    amet, consectetur adipisicing
+                    elit...</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="element row border">
+              <div class="element-avatar">
+                <img class="rounded-circle z-depth-2" alt="100x100"
+                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" data-holder-rendered="true" />
+              </div>
+              <div class="element-detail">
+                <div class="element-detail_line">
+                  <span class="element-name text-primary">
+                    <a href="#">Dream comes true</a>
+                  </span>
+                  <span class="element-rating">
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star-half-alt text-warning"></i>
+                  </span>
+                  <span class="element-votes"> (100) </span>
+                </div>
+
+                <div class="element-detail_line element-address">
+                  <i class="fas fa-map-marker-alt icon_address"></i>
+                  Bà Huyện Thanh Quan, Phường 1, Thành phố Đà Lạt, Lâm Đồng
+                </div>
+
+                <div class="element-detail_line element-phone">
+                  <i class="fas fa-phone-volume icon_phone"></i>
+                  090 999 41 25
+                </div>
+
+                <p class="element-quote">
+                  <i class="fas fa-quote-right icon-quote"></i><span class="element-quote_quote">Lorem ipsum dolor sit
+                    amet, consectetur adipisicing
+                    elit...</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="...">
+              <ul class="pagination">
+                <li class="page-item disabled">
+                  <span class="page-link">Previous</span>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active">
+                  <span class="page-link">
+                    2
+                    <span class="sr-only">(current)</span>
+                  </span>
+                </li>
+                <li class="page-item">
+                  <span class="page-link"> ... </span>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">99</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+
+          </div>
+
+        </div>
+
+        <!-- Đồ ăn -->
+        <div class="home-main-element">
+          <div class="element-header place text-success">
+            <i class="fas fa-utensils element-header_icon"></i><span>Đồ ăn</span>
+            <div class="top-vote">
+              <button type="button" class="btn btn-primary">
+                <i class="fas fa-thumbs-up icon_like"></i>Top xịn
+              </button>
+              <button type="button" class="btn btn-danger">
+                <i class="fas fa-thumbs-down icon_dislike"></i>Top bựa
+              </button>
+            </div>
+          </div>
+          <div class="element-wrap">
+            <!-- Each element -->
+            <div class="element row border">
+              <div class="element-avatar">
+                <img class="rounded-circle z-depth-2" alt="100x100"
+                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" data-holder-rendered="true" />
+              </div>
+              <div class="element-detail">
+                <div class="element-detail_line">
+                  <span class="element-name text-primary">
+                    <a href="#">Phở gà</a>
+                  </span>
+                  <span class="element-rating">
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star-half-alt text-warning"></i>
+                  </span>
+                  <span class="element-votes"> (100) </span>
+                </div>
+
+                <div class="element-detail_line element-price">
+                  <i class="fas fa-dollar-sign icon_price"></i>
+                  25000 - 40000 VND
+                </div>
+
+                <div class="element-detail_line element-food-recommend">
+                  <i class="fas fa-heart icon_food-recommend"></i>
+                  <a href="#">Quán cây gà</a>
+                </div>
+
+                <p class="element-quote">
+                  <i class="fas fa-quote-right icon-quote"></i><span class="element-quote_quote">Lorem ipsum dolor sit
+                    amet, consectetur adipisicing
+                    elit...</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="element row border">
+              <div class="element-avatar">
+                <img class="rounded-circle z-depth-2" alt="100x100"
+                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" data-holder-rendered="true" />
+              </div>
+              <div class="element-detail">
+                <div class="element-detail_line">
+                  <span class="element-name text-primary">
+                    <a href="#">Phở gà</a>
+                  </span>
+                  <span class="element-rating">
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star-half-alt text-warning"></i>
+                  </span>
+                  <span class="element-votes"> (100) </span>
+                </div>
+
+                <div class="element-detail_line element-price">
+                  <i class="fas fa-dollar-sign icon_price"></i>
+                  25000 - 40000 VND
+                </div>
+
+                <div class="element-detail_line element-food-recommend">
+                  <i class="fas fa-heart icon_food-recommend"></i>
+                  <a href="#">Quán cây gà</a>
+                </div>
+
+                <p class="element-quote">
+                  <i class="fas fa-quote-right icon-quote"></i><span class="element-quote_quote">Lorem ipsum dolor sit
+                    amet, consectetur adipisicing
+                    elit...</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="element row border">
+              <div class="element-avatar">
+                <img class="rounded-circle z-depth-2" alt="100x100"
+                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" data-holder-rendered="true" />
+              </div>
+              <div class="element-detail">
+                <div class="element-detail_line">
+                  <span class="element-name text-primary">
+                    <a href="#">Phở gà</a>
+                  </span>
+                  <span class="element-rating">
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star-half-alt text-warning"></i>
+                  </span>
+                  <span class="element-votes"> (100) </span>
+                </div>
+
+                <div class="element-detail_line element-price">
+                  <i class="fas fa-dollar-sign icon_price"></i>
+                  25000 - 40000 VND
+                </div>
+
+                <div class="element-detail_line element-food-recommend">
+                  <i class="fas fa-heart icon_food-recommend"></i>
+                  <a href="#">Quán cây gà</a>
+                </div>
+
+                <p class="element-quote">
+                  <i class="fas fa-quote-right icon-quote"></i><span class="element-quote_quote">Lorem ipsum dolor sit
+                    amet, consectetur adipisicing
+                    elit...</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="...">
+              <ul class="pagination">
+                <li class="page-item disabled">
+                  <span class="page-link">Previous</span>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active">
+                  <span class="page-link">
+                    2
+                    <span class="sr-only">(current)</span>
+                  </span>
+                </li>
+                <li class="page-item">
+                  <span class="page-link"> ... </span>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">99</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="side-bar col-sm-4 border border-primary">
+        <h3>Column 2</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+        <p>
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco
+          laboris...
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site footer -->
+  <footer class="site-footer text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-4">
+          <h6>About</h6>
+          <p class="text-justify">Review Đà Lạt là một trang web của một người yêu Đà Lạt, với mong muốn cùng mọi người chia sẻ những đánh giá, suy nghĩ của mình về trải nghiệm khi 
+            đến Đà Lạt
           </p>
+        </div>
+
+        <div class="col-xs-6 col-md-4">
+          <h6>Categories</h6>
+          <ul class="footer-links">
+            <li><a href="#"><i class="far fa-hand-point-right footer-icon"></i>Cẩm nang, kinh nghiệm</a></li>
+            <li><a href="#"><i class="far fa-hand-point-right footer-icon"></i>Top các quán ăn ngon</a></li>
+            <li><a href="#"><i class="far fa-hand-point-right footer-icon"></i>Top các quán ăn ngon</a></li>
+            <li><a href="#"><i class="far fa-hand-point-right footer-icon"></i>Lưu ý khi đến Đà Lạt</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-6 col-md-4">
+          <h6>Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-bug footer-icon"></i>Báo lỗi, sửa sai</a></li>
+            <li><a href="#"><i class="fas fa-eraser footer-icon"></i>Yêu cầu xóa comment, đánh giá sai</a></li>
+            <li><a href="#"><i class="fas fa-ad footer-icon"></i>Liên hệ, quảng cáo</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by
+            <a href="#">Review Đà Lạt</a>.
+          </p>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <ul class="social-icons">
+            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a class="twitter" href="#"><i class="fa fa-instagram"></i></a></li>
+          </ul>
         </div>
       </div>
     </div>
-  </body>
+  </footer>
+</body>
+
 </html>
