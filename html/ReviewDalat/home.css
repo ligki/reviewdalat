@@ -1,0 +1,101 @@
+.element {
+  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.element-name {
+  font-size: 1.5rem;
+}
+
+.element-avatar {
+  float: left;
+  margin-right: 1rem;
+}
+
+.element-detail {
+  padding-left: 1rem;
+}
+
+.element-quote {
+  padding-top: 1rem;
+}
+
+.element-votes {
+  font-weight: bold;
+}
+.element-quote_quote {
+  padding-left: 5px;
+  font-style: italic;
+}
+.element-avatar img {
+  width: 100px;
+  height: 100px;
+}
+
+.element-header {
+  font-size: 2rem;
+  padding-bottom: 1rem;
+  overflow: hidden;
+}
+
+.element-header_icon {
+  padding-right: 1rem;
+}
+
+.logo {
+  width: 70px;
+  margin-right: 1rem;
+}
+
+.banner {
+  background-image: url("img/linkedin_banner_image_1.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.home-main-element {
+  padding-top: 1rem;
+}
+
+.icon-rating {
+  color: yellow;
+}
+
+.icon_like {
+  padding-right: 1rem;
+  color: greenyellow;
+}
+
+.icon_dislike {
+  padding-right: 1rem;
+  color: white;
+}
+
+.top-vote {
+  float: right;
+}
+
+.element-wrap:link {
+  text-decoration: none;
+}
+
+.element-wrap:visited {
+  text-decoration: none;
+}
+
+.element-wrap:hover {
+  text-decoration: underline;
+}
+
+.element-wrap:active {
+  text-decoration: underline;
+}
+
+a:hover {
+  color: yellowgreen;
+  font-weight: bold;
+  text-decoration: none;
+}

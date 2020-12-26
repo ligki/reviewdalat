@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head-files">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link th:href="@{/css/common.css}" rel="stylesheet">
+    <script th:src="@{/js/common.js}" rel="stylesheet"></script>
+</head>
+<body>
+<div th:fragment="header">
+    <div class="top-nav" id="header-top-nav">
+        <a th:href="@{/}" class="active">Trang chủ</a>
+        <a th:href="@{/tips}">Mẹo nhỏ</a>
+        <a th:href="@{/share}">Chia sẻ</a>
+        <a th:href="@{/review}">Đánh giá</a>
+        <a href="javascript:void(0);" class="icon" onclick="topNavResponsive()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+</div>
+</body>
+</html>

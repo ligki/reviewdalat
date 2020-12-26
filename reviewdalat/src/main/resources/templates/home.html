@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="fragments/general.html::head-files" th:remove="tag"></div>
+    <title>Home</title>
+</head>
+<body>
+<div th:include="fragments/general.html :: header" th:remove="tag"></div>
+<div class="container-fluid main">
+    <div class="row tip">
+        <div class="col-9 content">col-10</div>
+        <div class="col-3 side-bar">col</div>
+    </div>
+</div>
+</body>
+</html>
