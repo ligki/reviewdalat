@@ -3,11 +3,20 @@ a:hover {
   text-decoration: none;
 }
 
+a.tip:hover {
+  background-color: whitesmoke;
+  font-weight: normal;
+}
+
 .banner {
   background-image: url("img/twitter_header_photo_1.png");
   background-repeat: round;
   background-size: 100%;
   font-weight: 600;
+}
+
+.copyright-text {
+  margin: 0
 }
 
 .element:hover {
@@ -139,6 +148,14 @@ a:hover {
   margin-right: 1rem;
 }
 
+.new-review {
+  margin-bottom: 1rem;
+}
+
+.new-review_header span:first-of-type {
+  font-weight: bold;
+}
+
 .pagination {
   flex-wrap: wrap;
 }
@@ -148,7 +165,7 @@ a:hover {
   margin-bottom: 1rem;
 }
 
-.review :hover {
+.review:hover {
   background-color: whitesmoke;
 }
 
@@ -176,6 +193,10 @@ a:hover {
 
 .review-react div {
   padding: 0.75rem;
+}
+
+.review-react div:hover {
+  background-color: white;
 }
 
 .site-footer {
@@ -213,18 +234,6 @@ a:hover {
   text-decoration: none;
 }
 
-.write-review {
-  margin: auto;
-}
-
-.new-review {
-  margin-bottom: 1rem;
-}
-
-.new-review_header span:first-of-type {
-  font-weight: bold;
-}
-
 .site-footer .social-icons a {
   width: 40px;
   height: 40px;
@@ -234,10 +243,6 @@ a:hover {
   border-radius: 100%;
   background-color: #33353d;
   color: whitesmoke;
-}
-
-.copyright-text {
-  margin: 0
 }
 
 .social-icons {
@@ -303,10 +308,19 @@ a:hover {
   background-color: #ea4c89
 }
 
+.tip {
+  display: flex;
+}
+
+.write-review {
+  margin: auto;
+}
+
 @media (max-width:991px) {
   .site-footer [class^=col-] {
     margin-bottom: 30px
   }
+
 }
 
 @media (max-width:767px) {
@@ -321,4 +335,5 @@ a:hover {
     margin-right: 0;
     font-weight: 600
   }
+
 }
