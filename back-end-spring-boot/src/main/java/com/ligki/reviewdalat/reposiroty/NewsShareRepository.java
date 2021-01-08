@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface NewsShareRepository extends CrudRepository<NewsShare, Integer> {
+public interface NewsShareRepository extends CrudRepository<NewsShare, String> {
     List<NewsShare> findTop10ByOrderByCreatedAsc();
 }

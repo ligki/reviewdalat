@@ -1,7 +1,6 @@
 package com.ligki.reviewdalat.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ligki.reviewdalat.constant.DateTime;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
@@ -15,22 +14,28 @@ import javax.persistence.Id;
 @Data
 @Entity
 @Where(clause = "active = 1")
-public class NewsShare {
+public class ReviewObject {
+
     @Id
     @GeneratedValue
     @Column(nullable = false)
-    private String  id;
-
-    private String  title;
-    private String  titleImage;
-    private String  htmlContent;
-    private String  source;
+    String id;
+    String name;
+    String type;
+    String imageIcon;
+    String rating1;
+    String rating2;
+    String rating3;
+    String rating4;
+    String rating5;
+    String location;
+    String phone;
+    String description;
     @JsonFormat(pattern = DateTime.FORMAT_GENERAL)
-    private String  lastUpdate;
+    String lastUpdate;
     @JsonFormat(pattern = DateTime.FORMAT_GENERAL)
-    private String  created;
-    @JsonIgnore
-    private String  active;
+    String created;
+    String active;
 
     public String getId() {
         return StringUtils.leftPad(id, 8, "0");
