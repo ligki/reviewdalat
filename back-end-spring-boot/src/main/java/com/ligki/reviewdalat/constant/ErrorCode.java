@@ -16,7 +16,7 @@ public class ErrorCode {
     public void setFieldsFromProperties(Environment env) throws IllegalAccessException {
         for (Field f : ErrorCode.class.getDeclaredFields()) {
             f.setAccessible(true);
-            f.set(null, env.getProperty(f.getName().toLowerCase()));
+            f.set(null, env.getProperty(getPropertyName(f.getName())));
         }
     }
 
