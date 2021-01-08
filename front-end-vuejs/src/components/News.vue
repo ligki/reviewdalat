@@ -84,12 +84,25 @@
 
         <a href="#" class="float-right py-2 pr-3">Xem tất cả</a>
       </div>
-      
     </div>
 </template>
 
 <script>
+import NewsService from '../service/NewsService';
 export default {
-    name: "news"
+    name: "News",
+    data() {
+      return {
+        newsList : {}
+      }
+    },
+    methods: {
+      refreshNews() {
+        this.newsList = NewsService.retrieveLastestNews();
+      }
+    },
+    created() {
+      this.refreshNews();
+    },
 }
 </script>
