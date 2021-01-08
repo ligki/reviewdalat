@@ -1,1 +1,5 @@
-const API = 'http://localhost:8082';
+const API = 'http://localhost:8181/reviewdalat';
+
+export default {
+    API
+}
