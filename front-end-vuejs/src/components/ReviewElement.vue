@@ -100,8 +100,6 @@ export default {
     refreshNewestReview() {
       ReviewService.retrieveNewest(this.reviewType)
         .then(response => {
-          console.log("newest");
-          console.log(response.data);
           this.newestReview = response.data;
         });
     },
@@ -109,8 +107,6 @@ export default {
     refreshBestReview() {
       ReviewService.retrieveBest(this.reviewType)
       .then(response => {
-        console.log("best");
-        console.log(response.data);
         this.newestReview = response.data;
       })
     },
@@ -118,8 +114,6 @@ export default {
     refreshWorstReview() {
       ReviewService.retrieveWorst(this.reviewType)
       .then(response => {
-        console.log("worst");
-        console.log(response.data);
         this.newestReview = response.data;
       })
     },

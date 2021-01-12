@@ -38,7 +38,6 @@ export default {
     refreshNewestComments() {
       CommentService.retrieveNewestCommentToHome()
         .then(response => {
-          console.log(response.data);
           this.newestComments = response.data;
         })
     }

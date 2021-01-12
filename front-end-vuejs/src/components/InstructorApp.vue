@@ -13,6 +13,7 @@
                 <SideBar />
             </div>
         </div>
+        <Footer />
         
     </div>
 
@@ -23,13 +24,16 @@ import Header from './common/Header.vue';
 import News from './News.vue';
 import ReviewElement from './ReviewElement.vue';
 import SideBar from './SideBar';
+import Footer from './common/Footer';
+
 export default {
     name : "InstructorsApp",
     components: {
         Header,
         News,
         ReviewElement,
-        SideBar
+        SideBar,
+        Footer
     }
 }
 </script>
