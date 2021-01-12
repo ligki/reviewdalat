@@ -8,5 +8,12 @@ import java.util.List;
 
 @Repository
 public interface ReviewCommentRepository extends CrudRepository<ReviewComment, String> {
-    List<ReviewComment> findTop10ByOrderByCreatedDesc();
+    /**
+     * Find top 10 Review Comment that
+     * reviewObjectId not null and reviewCommentParent null: the parent review
+     * order by created desc: newest review
+     *
+     * @return
+     */
+    List<ReviewComment> findTop10ByReviewObjectIdNotNullAndReviewCommentParentNullOrderByCreatedDesc();
 }

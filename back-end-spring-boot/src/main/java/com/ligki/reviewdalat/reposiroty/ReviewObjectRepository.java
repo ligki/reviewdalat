@@ -30,4 +30,7 @@ public interface ReviewObjectRepository extends CrudRepository<ReviewObject, Str
      */
     @Query(value = "SELECT *, (r.rating1*1+r.rating2*2+r.rating3*3+r.rating4*4+r.rating5*5)/(rating1+rating2+rating3+rating4+rating5) as avr FROM review_object r WHERE type=:type AND active=1 ORDER BY avr ASC LIMIT 10", nativeQuery = true)
     List<ReviewObject> findWorstReviewObjectByType(@Param("type") String type);
+
+    @Query(value = "SELECT name FROM review_object WHERE id = :id", nativeQuery = true)
+    String findNameById(@Param("id") String id);
 }

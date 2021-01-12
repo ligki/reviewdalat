@@ -1,5 +1,7 @@
 package com.ligki.reviewdalat.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ligki.reviewdalat.constant.DateTime;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Where;
@@ -27,7 +29,9 @@ public class ReviewComment {
     String like;
     String dislike;
     String report;
+    @JsonFormat(pattern = DateTime.FORMAT_GENERAL)
     String lastUpdate;
+    @JsonFormat(pattern = DateTime.FORMAT_GENERAL)
     String created;
     String active;
 

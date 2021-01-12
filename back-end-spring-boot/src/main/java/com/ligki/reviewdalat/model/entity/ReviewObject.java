@@ -1,6 +1,7 @@
 package com.ligki.reviewdalat.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ligki.reviewdalat.constant.DateTime;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
@@ -35,6 +36,7 @@ public class ReviewObject {
     String lastUpdate;
     @JsonFormat(pattern = DateTime.FORMAT_GENERAL)
     String created;
+    @JsonIgnore
     String active;
 
     public String getId() {
