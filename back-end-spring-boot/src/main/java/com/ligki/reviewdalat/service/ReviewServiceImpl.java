@@ -5,12 +5,9 @@ import com.ligki.reviewdalat.model.entity.ReviewObject;
 import com.ligki.reviewdalat.model.responsetype.NewestReviewObject;
 import com.ligki.reviewdalat.reposiroty.ReviewObjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Service

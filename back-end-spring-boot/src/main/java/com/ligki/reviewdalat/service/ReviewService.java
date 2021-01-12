@@ -1,5 +1,6 @@
 package com.ligki.reviewdalat.service;
 
+import com.ligki.reviewdalat.model.entity.ReviewComment;
 import com.ligki.reviewdalat.model.responsetype.NewestReviewObject;
 
 import java.util.List;
@@ -31,4 +32,5 @@ public interface ReviewService {
      * @return
      */
     List<NewestReviewObject> getWorstReviewObject(String type);
+
 }

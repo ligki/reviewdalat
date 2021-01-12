@@ -5,7 +5,10 @@
             <News />
             <div class="home-main row">
                 <div class="col-sm-8 border border-primary">
-                    <PlaceElement />
+                    <ReviewElement type="place" />
+                    <ReviewElement type="coffee-shop" />
+                    <ReviewElement type="hotel" />
+                    <ReviewElement type="food" />
                 </div>
             </div>
         </div>
@@ -17,13 +20,13 @@
 <script>
 import Header from './common/Header.vue';
 import News from './News.vue';
-import PlaceElement from './PlaceElement.vue';
+import ReviewElement from './ReviewElement.vue';
 export default {
     name : "InstructorsApp",
     components: {
         Header,
         News,
-        PlaceElement
+        ReviewElement
     }
 }
 </script>
