@@ -10,6 +10,7 @@
                     <ReviewElement type="hotel" />
                     <ReviewElement type="food" />
                 </div>
+                <SideBar />
             </div>
         </div>
         
@@ -21,12 +22,14 @@
 import Header from './common/Header.vue';
 import News from './News.vue';
 import ReviewElement from './ReviewElement.vue';
+import SideBar from './SideBar';
 export default {
     name : "InstructorsApp",
     components: {
         Header,
         News,
-        ReviewElement
+        ReviewElement,
+        SideBar
     }
 }
 </script>

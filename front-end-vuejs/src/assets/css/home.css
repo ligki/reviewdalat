@@ -29,6 +29,9 @@ a.tip:hover {
   margin-right: 10px;
   margin-bottom: 1rem;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: unset;
 }
 
 .element-name {
