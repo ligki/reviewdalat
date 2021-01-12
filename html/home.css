@@ -29,6 +29,9 @@ a.tip:hover {
   margin-right: 10px;
   margin-bottom: 1rem;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: unset;
 }
 
 .element-name {
@@ -154,8 +157,16 @@ a.tip:hover {
   margin-bottom: 1rem;
 }
 
+.new-review :hover {
+  background-color: whitesmoke;
+}
+
 .new-review_header span:first-of-type {
   font-weight: bold;
+}
+
+.new-review_header span a:hover {
+    font-weight: normal;
 }
 
 .news-content {
