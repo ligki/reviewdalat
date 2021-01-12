@@ -11,7 +11,7 @@
  Target Server Version : 80022
  File Encoding         : 65001
 
- Date: 11/01/2021 16:58:56
+ Date: 12/01/2021 16:59:39
 */
 
 SET NAMES utf8mb4;
@@ -35,11 +35,31 @@ CREATE TABLE `news_share`  (
   `title_image` varchar(1024) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `html_content` text CHARACTER SET utf8 COLLATE utf8_bin NULL,
   `source` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `last_update` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   `created` datetime(0) NOT NULL,
   `active` tinyint(1) NOT NULL,
-  `last_update` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for review_comment
+-- ----------------------------
+DROP TABLE IF EXISTS `review_comment`;
+CREATE TABLE `review_comment`  (
+  `id` int(8) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+  `author` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT 'Người Bí Ẩn',
+  `review_object_id` int(8) UNSIGNED ZEROFILL NULL DEFAULT NULL,
+  `point` tinyint(1) NULL DEFAULT 3,
+  `review_comment_parent` int(8) UNSIGNED ZEROFILL NULL DEFAULT NULL,
+  `context` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `like` int(0) NULL DEFAULT 0,
+  `dislike` int(0) NULL DEFAULT 0,
+  `report` int(0) NULL DEFAULT 0,
+  `last_update` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  `created` datetime(0) NOT NULL DEFAULT '2020-01-01 00:00:00',
+  `active` tinyint(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for review_object
@@ -62,6 +82,6 @@ CREATE TABLE `review_object`  (
   `created` datetime(6) NULL DEFAULT NULL,
   `active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
