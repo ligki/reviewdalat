@@ -8,7 +8,7 @@
           <i class="fas fa-home text-primary"></i>
           <span class="text-primary"><a href="/">Trang chủ</a></span>
           <span>/</span>
-          <span>Quảng Trường</span>
+          <span>{{review.name}}</span>
         </div>
       </div>
 
@@ -18,35 +18,37 @@
           <img
             class="rounded-circle z-depth-2"
             alt="100x100"
-            src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
+            v-bind:src="review.image_icon"
             data-holder-rendered="true"
           />
         </div>
         <div class="element-detail">
           <div class="element-detail_line">
             <span class="element-name text-primary">
-              <a href="#">Quảng trường</a>
+              {{review.name}}
             </span>
-            <span class="element-rating">
+            <span class="element-rating" v-for="index in getFullStarsRating(review.average_rating)" :key="index">
               <i class="fas fa-star text-warning"></i>
-              <i class="fas fa-star text-warning"></i>
-              <i class="fas fa-star text-warning"></i>
+            </span>
+            <span v-if="getHalfStarsRating(review.average_rating) === '5'">
               <i class="fas fa-star-half-alt text-warning"></i>
             </span>
-            <span class="element-votes"> (100) </span>
+            <span class="element-votes"> ({{review.all_rates}}) </span>
           </div>
 
           <div class="element-detail_line element-address">
-            <i class="fas fa-map-marker-alt icon_address"></i>
-            Bà Huyện Thanh Quan, Phường 1, Thành phố Đà Lạt, Lâm Đồng
-          </div>
+              <i class="fas fa-map-marker-alt icon_address"></i>
+              {{review.location}}
+            </div>
 
-          <p class="element-quote">
-            <i class="fas fa-quote-right icon-quote"></i
-            ><span class="element-quote_quote"
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit...</span
-            >
-          </p>
+            <div v-if="review.phone" class="element-detail_line element-phone">
+              <i class="fas fa-phone-volume icon_phone"></i>
+              {{review.phone}}
+            </div>
+
+            <p class="element-quote">
+              <i class="fas fa-quote-right icon-quote"></i><span class="element-quote_quote">{{review.description}}</span>
+            </p>
         </div>
 
         <div class="write-review">
@@ -79,17 +81,16 @@
         <div class="review-content border px-3">
           <div class="review-content_content py-3">
             I've been having trouble finding this one. I have a div that is \n
-            centered in the body margin: 0 auto; \n
-            . It contains multiple divs. I
-            want it to expand to the width of it's widest 
-            child width: auto; The
-            problem is I want to have one of the child div's aligned on the
-            right, however this expands my paren
-            t to 100%. How would I
+            centered in the body margin: 0 auto; \n . It contains multiple divs.
+            I want it to expand to the width of it's widest child width: auto;
+            The problem is I want to have one of the child div's aligned on the
+            right, however this expands my paren t to 100%. How would I
             accomplish this without a fixed width for the parent?
           </div>
 
-          <div class="review-react row text-center border font-weight-bold my-3">
+          <div
+            class="review-react row text-center border font-weight-bold my-3"
+          >
             <div class="col-md-3 border text-primary">
               <i class="fas fa-comments pr-1"></i>Comment
             </div>
@@ -247,6 +248,8 @@
 <script>
 import Header from "./common/Header";
 import Footer from "./common/Footer";
+import ReviewService from "../service/ReviewService";
+
 export default {
   name: "ReviewDetailPage",
   head: {
@@ -269,9 +272,42 @@ export default {
       },
     ],
   },
+  data() {
+    return {
+      reviewId: "",
+      reviewType: "",
+      review: '',
+    };
+  },
+  methods: {
+    refreshDetail() {
+      ReviewService.retrieveDetail(this.reviewType, this.reviewId).then(
+        (response) => {
+          this.review = response.data;
+        }
+      );
+    },
+
+    // Example: 4.5 return 4
+    getFullStarsRating(floatValue) {
+      if (!floatValue) return 0;
+      return parseInt(floatValue.toString().split('.')[0]);
+    },
+
+    // Example: 4.5 return 5
+    getHalfStarsRating(floatValue) {
+      if (!floatValue) return 0;
+      return floatValue.toString().split('.')[1];
+    }
+  },
   components: {
     Header,
-    Footer,
+    Footer
+  },
+  created() {
+    this.reviewId = this.$route.params.id;
+    this.reviewType = this.$route.params.review_object_type;
+    this.refreshDetail();
   },
 };
 </script>

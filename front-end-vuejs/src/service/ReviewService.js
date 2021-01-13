@@ -14,6 +14,10 @@ class ReviewService {
   retrieveWorst(reviewType) {
     return axios.get(UrlCommon.API + "/reviews/" + reviewType + "/worst");
   }
+
+  retrieveDetail(reviewType, id) {
+    return axios.get(UrlCommon.API + "/reviews/" + reviewType + "/" + id);
+  }
 }
 
 export default new ReviewService();
