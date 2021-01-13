@@ -1,15 +1,11 @@
 <template>
-  <instructor-app></instructor-app>
+  <router-view />
 </template>
 
 <script>
-import InstructorApp from './components/InstructorApp.vue'
 
 export default {
-  name: 'App',
-  components: {
-    InstructorApp
-  }
+  name: 'App'
 }
 </script>
 

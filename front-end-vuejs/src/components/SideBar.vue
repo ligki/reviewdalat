@@ -7,7 +7,7 @@
       <div class="new-review_header">
         <span>{{comment.author}}</span>
         <span> đã review </span>
-        <span><a href="#">{{comment.review_object_name}}</a></span>
+        <span><a :href="'/' + mapTypeToPathVariable(comment.review_object_type) + '/' + comment.review_object_id">{{comment.review_object_name}}</a></span>
       </div>
 
       <div class="new-review_rate">
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import Review from '../constant/Review';
 import CommentService from "../service/CommentService";
 
 export default {
@@ -40,6 +41,12 @@ export default {
         .then(response => {
           this.newestComments = response.data;
         })
+    },
+    mapTypeToPathVariable(typeInt) {
+      if (typeInt == '1') return Review.PLACE;
+      if (typeInt == '2') return Review.COFFEE_SHOP;
+      if (typeInt == '3') return Review.HOTEL;
+      if (typeInt == '4') return Review.FOOD;
     }
   },
   created() {
