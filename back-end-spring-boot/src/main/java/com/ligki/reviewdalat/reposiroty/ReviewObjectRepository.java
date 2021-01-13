@@ -33,4 +33,7 @@ public interface ReviewObjectRepository extends CrudRepository<ReviewObject, Str
 
     @Query(value = "SELECT name FROM review_object WHERE id = :id", nativeQuery = true)
     String findNameById(@Param("id") String id);
+
+    @Query(value = "SELECT type FROM review_object WHERE id = :id", nativeQuery = true)
+    String findTypeById(@Param("id") String id);
 }

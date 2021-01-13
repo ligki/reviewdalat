@@ -26,10 +26,11 @@ public class CommentServiceImpl extends BaseService implements CommentService {
                 .map(comment -> {
                     NewestComment nc = dozerBeanMapper.map(comment, NewestComment.class);
                     String roName = reviewObjectRepository.findNameById(comment.getReviewObjectId());
+                    String roType = reviewObjectRepository.findTypeById(comment.getReviewObjectId());
                     String lastTime = DateTimeUtil.diff2DateToDayAndHour(comment.getCreated(), DateTimeUtil.getCurrentTime());
 
-
                     nc.setReviewObjectName(roName);
+                    nc.setReviewObjectType(roType);
                     nc.setLastTime(lastTime);
                     return nc;
                 }).collect(Collectors.toList());

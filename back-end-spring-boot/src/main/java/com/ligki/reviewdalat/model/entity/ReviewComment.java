@@ -36,6 +36,10 @@ public class ReviewComment {
     String active;
 
     public String getId() {
-        return StringUtils.leftPad(id, 8, "0");
+        return StringUtils.leftPad(this.id, 8, "0");
+    }
+
+    public String getReviewObjectId() {
+        return StringUtils.leftPad(this.reviewObjectId, 8, "0");
     }
 }
