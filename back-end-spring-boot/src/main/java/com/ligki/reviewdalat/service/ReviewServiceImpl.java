@@ -2,12 +2,14 @@ package com.ligki.reviewdalat.service;
 
 import com.ligki.reviewdalat.constant.ReviewObjectType;
 import com.ligki.reviewdalat.model.entity.ReviewObject;
+import com.ligki.reviewdalat.model.responsetype.DetailReviewObject;
 import com.ligki.reviewdalat.model.responsetype.NewestReviewObject;
 import com.ligki.reviewdalat.reposiroty.ReviewObjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -62,6 +64,21 @@ public class ReviewServiceImpl extends BaseService implements ReviewService {
                     return r;
                 })
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public DetailReviewObject getDetail(String id) {
+        Optional<ReviewObject> ro = reviewObjectRepository.findById(id);
+        if (ro.isEmpty()) {
+            LOGGER.info("Cannot find reviewObject {}", id);
+            return null;
+        }
+        DetailReviewObject result = dozerBeanMapper.map(ro.get(), DetailReviewObject.class);
+        String allRates = calculateAllRates(ro.get());
+        String averageRating = calculateAverageRating(ro.get());
+        result.setAllRates(allRates);
+        result.setAverageRating(averageRating);
+        return result;
     }
 
     private String calculateAverageRating(ReviewObject review) {

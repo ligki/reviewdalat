@@ -1,13 +1,13 @@
 package com.ligki.reviewdalat.reposiroty;
 
 import com.ligki.reviewdalat.model.entity.ReviewObject;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ReviewObjectRepository extends CrudRepository<ReviewObject, String> {
@@ -36,4 +36,6 @@ public interface ReviewObjectRepository extends CrudRepository<ReviewObject, Str
 
     @Query(value = "SELECT type FROM review_object WHERE id = :id", nativeQuery = true)
     String findTypeById(@Param("id") String id);
+
+    Optional<ReviewObject> findById(String id);
 }

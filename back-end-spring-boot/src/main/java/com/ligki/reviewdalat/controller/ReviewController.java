@@ -30,4 +30,11 @@ public class ReviewController extends BaseController {
         return handleResponse(reviewService.getWorstReviewObject(type));
     }
 
+    @GetMapping("/{type:place|coffee-shop|hotel|food}/{id}")
+    ResponseEntity<?> getReviewDetail(@PathVariable(value = "type", required = true) String type,
+                                      @PathVariable(value = "id", required = true) String id) {
+        return handleResponse(reviewService.getDetail(id));
+    }
+
+
 }
