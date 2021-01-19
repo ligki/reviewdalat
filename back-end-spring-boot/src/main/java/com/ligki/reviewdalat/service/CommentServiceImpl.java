@@ -1,7 +1,10 @@
 package com.ligki.reviewdalat.service;
 
 import com.ligki.reviewdalat.constant.CommentReact;
+import com.ligki.reviewdalat.constant.ErrorCode;
+import com.ligki.reviewdalat.exception.ApiException;
 import com.ligki.reviewdalat.model.entity.ReviewComment;
+import com.ligki.reviewdalat.model.httpentity.ErrorResponse;
 import com.ligki.reviewdalat.model.responsetype.DetailReviewComment;
 import com.ligki.reviewdalat.model.responsetype.DetailReviewCommentChild;
 import com.ligki.reviewdalat.model.responsetype.NewestComment;
@@ -45,7 +48,7 @@ public class CommentServiceImpl extends BaseService implements CommentService {
     @Override
     public List<DetailReviewComment> getDetailComment(String id) {
         //TODO: validate id is parent
-        List<DetailReviewComment> result = reviewCommentRepository.findByReviewObjectId(id)
+        List<DetailReviewComment> result = reviewCommentRepository.findByReviewObjectIdOrderByCreatedDesc(id)
                 .stream()
                 .map(reviewComment -> {
                     Optional<ReviewComment> reviewCommentOpt = reviewCommentRepository.findById(reviewComment.getId());
@@ -56,7 +59,7 @@ public class CommentServiceImpl extends BaseService implements CommentService {
                         DetailReviewComment detail = dozerBeanMapper.map(reviewCommentOpt.get(), DetailReviewComment.class);
                         detail.setLastTime(DateTimeUtil.diff2DateToDayAndHour(reviewComment.getCreated(), DateTimeUtil.getCurrentTime()));
 
-                        List<DetailReviewCommentChild> commentChildren = reviewCommentRepository.findByReviewCommentParent(reviewComment.getId())
+                        List<DetailReviewCommentChild> commentChildren = reviewCommentRepository.findByReviewCommentParentOrderByCreatedDesc(reviewComment.getId())
                                 .stream()
                                 .map(r -> {
                                     DetailReviewCommentChild child = dozerBeanMapper.map(r, DetailReviewCommentChild.class);
@@ -74,6 +77,17 @@ public class CommentServiceImpl extends BaseService implements CommentService {
                 .collect(Collectors.toList());
 
         return result;
+    }
+
+    @Override
+    public ErrorResponse addComment(ReviewComment review) {
+        try {
+            int rows = reviewCommentRepository.insertComment(review.getAuthor(), review.getReviewObjectId(), review.getPoint(), review.getContext());
+            return new ErrorResponse(ErrorCode.SUCCESS, ErrorCode.SUCCESS_MESSAGE);
+        } catch (Exception e) {
+            LOGGER.info("Insert new review comment fail: {}", e.getMessage());
+            throw new ApiException(ErrorCode.E0001, ErrorCode.E0001_MESSAGE);
+        }
     }
 
     private String convertReact(ReviewComment reviewComment) {

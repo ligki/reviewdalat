@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ligki.reviewdalat.constant.ErrorCode;
 import com.ligki.reviewdalat.model.httpentity.ErrorResponse;
 import com.ligki.reviewdalat.utils.JsonUtil;
+import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 public abstract class BaseController {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    protected DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
 
     /**
      * To common response for APIs
