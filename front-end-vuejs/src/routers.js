@@ -16,10 +16,15 @@ const router = new Router({
       component: () => import("./components/HomePage"),
     },
     {
-      path: "/:review_object_type/:id",
+      path: "/:review_object_type(place|coffee-shop|hotel|food)/:id",
       name: "ReviewDetail",
       component: () => import("./components/ReviewDetailPage"),
     },
+    {
+      path: "*",
+      name: 'Not Found',
+      component: () => import('./components/common/NotFound')
+    }
   ],
 });
 
