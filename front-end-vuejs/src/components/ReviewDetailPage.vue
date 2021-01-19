@@ -64,28 +64,20 @@
       </div>
 
       <!-- Reviews -->
-      <div class="row border border-primary review">
+      <div class="row border border-primary review" v-for="comment in comments" :key="comment">
         <!-- Review Header -->
         <div class="reviewer my-1">
-          <span class="font-weight-bold">Người review 1</span>
-          <span class="element-rating">
+          <span class="font-weight-bold">{{comment.author}}</span>
+          <span class="element-rating" v-for="index in Number(comment.point)" :key="index" v-bind:index="index">
             <i class="fas fa-star text-warning"></i>
-            <i class="fas fa-star text-warning"></i>
-            <i class="fas fa-star text-warning"></i>
-            <i class="fas fa-star-half-alt text-warning"></i>
           </span>
-          <span class="review-time font-italic"> 1 giờ trước </span>
+          <span class="review-time font-italic">{{comment.last_time}}</span>
         </div>
 
         <!-- Review Content -->
         <div class="review-content border px-3">
           <div class="review-content_content py-3">
-            I've been having trouble finding this one. I have a div that is \n
-            centered in the body margin: 0 auto; \n . It contains multiple divs.
-            I want it to expand to the width of it's widest child width: auto;
-            The problem is I want to have one of the child div's aligned on the
-            right, however this expands my paren t to 100%. How would I
-            accomplish this without a fixed width for the parent?
+            {{comment.context}}
           </div>
 
           <div
@@ -107,44 +99,17 @@
         </div>
 
         <!-- Review Comment -->
-        <div class="review-comment px-3 py-3 border-bottom">
+        <div class="review-comment px-3 py-3 border-bottom" v-for="subComment in comment.comments" :key="subComment">
           <div class="review-comment_title pb-2">
-            <span class="font-weight-bold">Ẩn danh</span>
+            <span class="font-weight-bold">{{subComment.author}}</span>
             <span><i class="fas fa-thumbs-up px-1 text-success"></i></span>
-            <span class="font-italic">1 giờ trước</span>
+            <span class="font-italic">{{subComment.last_time}}</span>
           </div>
           <p>
-            I have a div that is centered in the body margin: 0 auto;. It
-            contains multiple divs. I want it to expand to the width of it's
-            widest child width: auto; The problem is I want to have one of the
-            child div's aligned on the right, however this expands my parent to
-            100%. How would I accomplish this without a fixed width for the
-            parent?
+            {{subComment.context}}
           </p>
         </div>
 
-        <!-- Pagination -->
-        <nav aria-label="...">
-          <ul class="pagination">
-            <li class="page-item disabled">
-              <span class="page-link">Previous</span>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item active">
-              <span class="page-link">
-                2
-                <span class="sr-only">(current)</span>
-              </span>
-            </li>
-            <li class="page-item">
-              <span class="page-link"> ... </span>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">99</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">Next</a>
-            </li>
-          </ul>
-        </nav>
       </div>
     </div>
     <Footer />
@@ -249,6 +214,7 @@
 import Header from "./common/Header";
 import Footer from "./common/Footer";
 import ReviewService from "../service/ReviewService";
+import CommentService from '../service/CommentService';
 
 export default {
   name: "ReviewDetailPage",
@@ -277,6 +243,7 @@ export default {
       reviewId: "",
       reviewType: "",
       review: '',
+      comments: []
     };
   },
   methods: {
@@ -286,6 +253,12 @@ export default {
           this.review = response.data;
         }
       );
+      CommentService.retrieveDetailComment(this.reviewId).then(
+        response => {
+          console.log(response.data);
+          this.comments = response.data;
+        }
+      )
     },
 
     // Example: 4.5 return 4
@@ -298,7 +271,8 @@ export default {
     getHalfStarsRating(floatValue) {
       if (!floatValue) return 0;
       return floatValue.toString().split('.')[1];
-    }
+    },
+
   },
   components: {
     Header,

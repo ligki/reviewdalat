@@ -196,7 +196,17 @@ a.tip:hover {
 }
 
 .review-content {
+  width: 100%;
   white-space: pre-line;
+}
+
+.review-content_content {
+  width: 100%;
+  white-space: pre-line;
+}
+
+.review-comment {
+  width: 100%;
 }
 
 .review-comment p {
