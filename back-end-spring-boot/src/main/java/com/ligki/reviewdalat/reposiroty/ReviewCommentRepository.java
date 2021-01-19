@@ -16,4 +16,8 @@ public interface ReviewCommentRepository extends CrudRepository<ReviewComment, S
      * @return
      */
     List<ReviewComment> findTop10ByReviewObjectIdNotNullAndReviewCommentParentNullOrderByCreatedDesc();
+
+    List<ReviewComment> findByReviewCommentParent(String reviewCommentParent);
+
+    List<ReviewComment> findByReviewObjectId(String reviewObjectId);
 }
