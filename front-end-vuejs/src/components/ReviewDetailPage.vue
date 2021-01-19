@@ -115,13 +115,13 @@
     <Footer />
     <!-- Modal -->
     <!-- The Modal -->
-    <form action="">
+    <form @submit="validateAndSubmit">
       <div class="modal fade" id="write-review-modal">
         <div class="modal-dialog">
           <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-              <h4 class="modal-title text-center">Viết review Quảng Trường</h4>
+              <h4 class="modal-title text-center">Viết review {{review.name}}</h4>
               <button type="button" class="close" data-dismiss="modal">
                 &times;
               </button>
@@ -129,13 +129,18 @@
 
             <!-- Modal body -->
             <div class="modal-body">
+              <div v-if="errors.length">
+                <div class="alert alert-warning" v-bind:key="index" v-for="(error, index) in errors">
+                  <div class="modal-error-msg" v-on:click="false">{{error}}</div>
+                </div>
+              </div>
               <div class="form-group">
                 <label for="name" class="font-weight-bold">Tên bạn</label>
                 <input
                   type="text"
                   class="form-control"
-                  name="reviewName"
                   placeholder="Người Rì viu có tâm"
+                  v-model="reviewName"
                 />
               </div>
 
@@ -153,12 +158,13 @@
                   cols="30"
                   rows="10"
                   placeholder="Nhớ viết dài hơn 20 kí tự nhé"
+                  v-model="reviewContext"
                 ></textarea>
               </div>
 
               <div class="form-group">
                 <label for="rate" class="font-weight-bold">Chấm điểm</label>
-                <select class="form-control">
+                <select class="form-control" v-model="reviewPoint">
                   <option value="1">
                     1 Điểm - Không chấp nhận được, cực kì tồi tệ
                   </option>
@@ -179,6 +185,9 @@
                   type="checkbox"
                   value=""
                   id="defaultCheck1"
+                  v-model="reviewConfirm"
+                  true-value="yes"
+                  false-value="no"
                 />
                 <label
                   class="form-check-label font-weight-bold"
@@ -193,9 +202,8 @@
             <!-- Modal footer -->
             <div class="modal-footer">
               <button
-                type="button"
+                type="submit"
                 class="btn btn-success"
-                data-dismiss="modal"
               >
                 Đăng luôn
               </button>
@@ -242,8 +250,13 @@ export default {
     return {
       reviewId: "",
       reviewType: "",
+      reviewContext: '',
+      reviewPoint: '',
+      reviewConfirm: 'no',
+      reviewName: '',
       review: '',
-      comments: []
+      comments: [],
+      errors: []
     };
   },
   methods: {
@@ -255,7 +268,6 @@ export default {
       );
       CommentService.retrieveDetailComment(this.reviewId).then(
         response => {
-          console.log(response.data);
           this.comments = response.data;
         }
       )
@@ -272,6 +284,30 @@ export default {
       if (!floatValue) return 0;
       return floatValue.toString().split('.')[1];
     },
+
+    validateAndSubmit(e) {
+      e.preventDefault();
+      this.errors = [];
+      if (!this.reviewName) {
+        this.errors.push("Hãy nhập tên bạn")
+      }
+      if (this.reviewContext.length < 20) {
+        this.errors.push("Nội dung phải hơn 20 kí tự bạn ơi")
+      }
+      if (this.reviewConfirm != "yes") {
+        this.errors.push("Xin hãy xác nhận lại")
+      }
+      if (this.errors.length === 0) {
+        CommentService.addComment(this.reviewId, {
+          author: this.reviewName,
+          point: this.reviewPoint,
+          context: this.reviewContext,
+        })
+        .then( () => {
+          window.location.reload();
+        });
+      }
+    }
 
   },
   components: {
