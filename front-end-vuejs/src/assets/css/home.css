@@ -161,6 +161,10 @@ a.tip:hover {
   background-color: whitesmoke;
 }
 
+.new-review_content {
+  word-break: break-all;
+}
+
 .new-review_header span:first-of-type {
   font-weight: bold;
 }
@@ -203,6 +207,7 @@ a.tip:hover {
 .review-content_content {
   width: 100%;
   white-space: pre-line;
+  word-break: break-all;
 }
 
 .review-comment {

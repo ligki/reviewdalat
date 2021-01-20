@@ -11,7 +11,7 @@
  Target Server Version : 80022
  File Encoding         : 65001
 
- Date: 13/01/2021 17:24:50
+ Date: 20/01/2021 15:19:53
 */
 
 SET NAMES utf8mb4;
@@ -49,9 +49,10 @@ CREATE TABLE `review_comment`  (
   `id` int(8) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `author` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT 'Người Bí Ẩn',
   `review_object_id` int(8) UNSIGNED ZEROFILL NULL DEFAULT NULL,
-  `point` tinyint(1) NULL DEFAULT 3,
+  `point` tinyint(1) NULL DEFAULT NULL,
   `review_comment_parent` int(8) UNSIGNED ZEROFILL NULL DEFAULT NULL,
   `context` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `comment` int(0) NULL DEFAULT 0,
   `like` int(0) NULL DEFAULT 0,
   `dislike` int(0) NULL DEFAULT 0,
   `report` int(0) NULL DEFAULT 0,
@@ -59,7 +60,7 @@ CREATE TABLE `review_comment`  (
   `created` datetime(0) NOT NULL DEFAULT '2020-01-01 00:00:00',
   `active` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for review_object
