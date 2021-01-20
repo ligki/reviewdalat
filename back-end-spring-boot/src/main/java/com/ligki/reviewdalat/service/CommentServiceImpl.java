@@ -121,7 +121,8 @@ public class CommentServiceImpl extends BaseService implements CommentService {
     private String convertReact(ReviewComment reviewComment) {
         if (ObjectUtils.isEmpty(reviewComment)) {
             return null;
-        } else if (TRUE_VALUE.equals(reviewComment.getLike())) return Comment.REACT_LIKE;
+        } else if (TRUE_VALUE.equals(reviewComment.getComment())) return Comment.REACT_COMMENT;
+        else if (TRUE_VALUE.equals(reviewComment.getLike())) return Comment.REACT_LIKE;
         else if (TRUE_VALUE.equals(reviewComment.getDislike())) return Comment.REACT_DISLIKE;
         else if (TRUE_VALUE.equals(reviewComment.getReport())) return Comment.REACT_REPORT;
         else return null;

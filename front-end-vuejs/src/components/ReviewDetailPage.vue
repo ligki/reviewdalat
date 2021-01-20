@@ -83,16 +83,16 @@
           <div
             class="review-react row text-center border font-weight-bold my-3"
           >
-            <div class="col-md-3 border text-primary">
+            <div class="col-md-3 border text-primary" data-toggle="modal" data-target="#modal-write-comment" @click="setModalWriteCommentData(comment.id, 'comment')">
               <i class="fas fa-comments pr-1"></i>Comment
             </div>
-            <div class="col-md-3 border text-success">
+            <div class="col-md-3 border text-success" data-toggle="modal" data-target="#modal-write-comment" @click="setModalWriteCommentData(comment.id, 'like')">
               <i class="fas fa-thumbs-up pr-1"></i>Like
             </div>
-            <div class="col-md-3 border text-danger">
+            <div class="col-md-3 border text-danger" data-toggle="modal" data-target="#modal-write-comment" @click="setModalWriteCommentData(comment.id, 'dislike')">
               <i class="fas fa-thumbs-down pr-1"></i>Dislike
             </div>
-            <div class="col-md-3 border text-warning">
+            <div class="col-md-3 border text-warning" data-toggle="modal" data-target="#modal-write-comment" @click="setModalWriteCommentData(comment.id, 'report')">
               <i class="fas fa-comment-slash pr-1"></i>Report
             </div>
           </div>
@@ -102,7 +102,7 @@
         <div class="review-comment px-3 py-3 border-bottom" v-for="subComment in comment.comments" :key="subComment">
           <div class="review-comment_title pb-2">
             <span class="font-weight-bold">{{subComment.author}}</span>
-            <span><i class="fas fa-thumbs-up px-1 text-success"></i></span>
+            <span><i class="fas px-1" v-bind:class="bindIconClass(subComment.react)"></i></span>
             <span class="font-italic">{{subComment.last_time}}</span>
           </div>
           <p>
@@ -113,8 +113,7 @@
       </div>
     </div>
     <Footer />
-    <!-- Modal -->
-    <!-- The Modal -->
+    <!-- Modal Write Review -->
     <form @submit="validateAndSubmit">
       <div class="modal fade" id="write-review-modal">
         <div class="modal-dialog">
@@ -129,11 +128,7 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-              <div v-if="errors.length">
-                <div class="alert alert-warning" v-bind:key="index" v-for="(error, index) in errors">
-                  <div class="modal-error-msg" v-on:click="false">{{error}}</div>
-                </div>
-              </div>
+              
               <div class="form-group">
                 <label for="name" class="font-weight-bold">Tên bạn</label>
                 <input
@@ -197,6 +192,11 @@
                   quan và công tâm
                 </label>
               </div>
+              <div v-if="errors.length">
+                <div class="alert alert-warning" v-bind:key="index" v-for="(error, index) in errors">
+                  {{error}}
+                </div>
+              </div>
             </div>
 
             <!-- Modal footer -->
@@ -215,6 +215,84 @@
         </div>
       </div>
     </form>
+
+    <!-- Modal Write Comment -->
+    <form @submit="validateAndSubmitComment">
+      <div class="modal fade" id="modal-write-comment" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Viết comment về review này</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="name" class="font-weight-bold">Tên bạn</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Người nhận xét có tâm"
+                  v-model="commentName"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="content" class="font-weight-bold"
+                  >Nội dung review<span
+                    class="text-danger ml-1 font-weight-bold"
+                    >(Bắt buộc)</span
+                  ></label
+                >
+                <textarea
+                  name=""
+                  class="form-control"
+                  id=""
+                  cols="30"
+                  rows="10"
+                  placeholder="Nhớ viết dài hơn 20 kí tự nhé"
+                  v-model="commentContext"
+                ></textarea>
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  v-model="commentConfirm"
+                  true-value="yes"
+                  false-value="no"
+                />
+                <label
+                  class="form-check-label font-weight-bold"
+                  for="defaultCheck1"
+                >
+                  Xác nhận
+                </label>
+              </div>
+              <div v-if="errorsComment.length">
+                <div class="alert alert-warning" v-bind:key="index" v-for="(error, index) in errorsComment">
+                  {{error}}
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="submit"
+                class="btn btn-success"
+              >
+                Đăng luôn
+              </button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </form>
+  
   </div>
 </template>
 
@@ -255,8 +333,17 @@ export default {
       reviewConfirm: 'no',
       reviewName: '',
       review: '',
+
+      commentName: '',
+      commentContext: '',
+      commentConfirm: 'no',
       comments: [],
-      errors: []
+      modalComment: {
+        id: '',
+        type: ''
+      },
+      errors: [],
+      errorsComment: []
     };
   },
   methods: {
@@ -284,6 +371,31 @@ export default {
       if (!floatValue) return 0;
       return floatValue.toString().split('.')[1];
     },
+    bindIconClass(react) {
+      if (react == 'comment') {
+        return 'fa-comments text-primary';
+      }
+
+      if (react == 'like') {
+        return 'fa-thumbs-up text-success';
+      }
+
+      if (react == 'dislike') {
+        return 'fa-thumbs-down text-danger';
+      }
+
+      if (react == 'report') {
+        return 'fa-comment-slash text-warning';
+      }
+    },
+
+    setModalWriteCommentData(commentId, type) {
+      if (['comment', 'like', 'dislike', 'report'].indexOf(type) == -1) {
+        this.errors.push("Nghi vấn hack");
+      }
+      this.modalComment.id = commentId;
+      this.modalComment.type = type;
+    },
 
     validateAndSubmit(e) {
       e.preventDefault();
@@ -293,6 +405,9 @@ export default {
       }
       if (this.reviewContext.length < 20) {
         this.errors.push("Nội dung phải hơn 20 kí tự bạn ơi")
+      }
+      if (['1', '2', '3', '4', '5'].indexOf(this.reviewPoint) == -1) {
+        this.errors.push("Chưa chấm điểm à bạn")
       }
       if (this.reviewConfirm != "yes") {
         this.errors.push("Xin hãy xác nhận lại")
@@ -306,6 +421,31 @@ export default {
         .then( () => {
           window.location.reload();
         });
+      }
+    },
+
+    validateAndSubmitComment(e) {
+      e.preventDefault();
+      this.errorsComment = [];
+      if (!this.commentName) {
+        this.errorsComment.push('Hãy nhập tên bạn')
+      }
+      if (this.commentContext.length < 20) {
+        this.errorsComment.push('Nhập trên 20 kí tự bạn ơi');
+      }
+      if (this.commentConfirm != 'yes') {
+        this.errorsComment.push('Chưa xác nhận kìa bạn');
+      }
+
+      if (this.errorsComment.length === 0) {
+        CommentService.addCommentReact(this.modalComment.id, {
+          author: this.commentName,
+          context: this.commentContext,
+          type: this.modalComment.type
+        })
+        .then( () => {
+          window.location.reload();
+        })
       }
     }
 

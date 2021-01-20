@@ -11,6 +11,9 @@ class CommentService {
   addComment(reviewObjectId, comment) {
     return axios.post(UrlCommon.API + "/comments/" + reviewObjectId, comment);
   }
+  addCommentReact(commentId, commentReact) {
+    return axios.post(UrlCommon.API + "/comments/react-comment/" + commentId, commentReact);
+  }
 }
 
 export default new CommentService();
