@@ -1,10 +1,10 @@
 package com.ligki.reviewdalat.service;
 
-import com.ligki.reviewdalat.constant.CommentReact;
+import com.ligki.reviewdalat.constant.Comment;
 import com.ligki.reviewdalat.constant.ErrorCode;
 import com.ligki.reviewdalat.exception.ApiException;
 import com.ligki.reviewdalat.model.entity.ReviewComment;
-import com.ligki.reviewdalat.model.httpentity.ErrorResponse;
+import com.ligki.reviewdalat.model.httpentity.SuccessResponse;
 import com.ligki.reviewdalat.model.responsetype.DetailReviewComment;
 import com.ligki.reviewdalat.model.responsetype.DetailReviewCommentChild;
 import com.ligki.reviewdalat.model.responsetype.NewestComment;
@@ -27,6 +27,8 @@ public class CommentServiceImpl extends BaseService implements CommentService {
 
     @Autowired
     ReviewObjectRepository reviewObjectRepository;
+
+    List<String> ACCEPTED_TYPES = List.of("comment", "like", "dislike", "report");
 
     @Override
     public List<NewestComment> getNewestComments() {
@@ -80,12 +82,38 @@ public class CommentServiceImpl extends BaseService implements CommentService {
     }
 
     @Override
-    public ErrorResponse addComment(ReviewComment review) {
+    public SuccessResponse addComment(ReviewComment review) {
         try {
             int rows = reviewCommentRepository.insertComment(review.getAuthor(), review.getReviewObjectId(), review.getPoint(), review.getContext());
-            return new ErrorResponse(ErrorCode.SUCCESS, ErrorCode.SUCCESS_MESSAGE);
+            return new SuccessResponse("Add comment success");
         } catch (Exception e) {
             LOGGER.info("Insert new review comment fail: {}", e.getMessage());
+            throw new ApiException(ErrorCode.E0001, ErrorCode.E0001_MESSAGE);
+        }
+    }
+
+    @Override
+    public SuccessResponse addCommentReact(ReviewComment review, String type) {
+        if (!ACCEPTED_TYPES.contains(type)) {
+            LOGGER.info("Add comment react fail because type is not correct");
+            throw new ApiException(ErrorCode.E0002, ErrorCode.E0002_MESSAGE);
+        }
+        try {
+            if (Comment.REACT_COMMENT.equals(type)) {
+                int rows = reviewCommentRepository.insertCommentReactComment(review.getAuthor(), review.getReviewCommentParent(), review.getContext());
+            }
+            if (Comment.REACT_LIKE.equals(type)) {
+                int rows = reviewCommentRepository.insertCommentReactLike(review.getAuthor(), review.getReviewCommentParent(), review.getContext());
+            }
+            if (Comment.REACT_DISLIKE.equals(type)) {
+                int rows = reviewCommentRepository.insertCommentReactDislike(review.getAuthor(), review.getReviewCommentParent(), review.getContext());
+            }
+            if (Comment.REACT_REPORT.equals(type)) {
+                int rows = reviewCommentRepository.insertCommentReactReport(review.getAuthor(), review.getReviewCommentParent(), review.getContext());
+            }
+            return new SuccessResponse("React comment success");
+        } catch (Exception e) {
+            LOGGER.info("Insert new comment react fail: {}", e.getMessage());
             throw new ApiException(ErrorCode.E0001, ErrorCode.E0001_MESSAGE);
         }
     }
@@ -93,9 +121,9 @@ public class CommentServiceImpl extends BaseService implements CommentService {
     private String convertReact(ReviewComment reviewComment) {
         if (ObjectUtils.isEmpty(reviewComment)) {
             return null;
-        } else if (TRUE_VALUE.equals(reviewComment.getLike())) return CommentReact.LIKE;
-        else if (TRUE_VALUE.equals(reviewComment.getDislike())) return CommentReact.DISLIKE;
-        else if (TRUE_VALUE.equals(reviewComment.getReport())) return CommentReact.REPORT;
+        } else if (TRUE_VALUE.equals(reviewComment.getLike())) return Comment.REACT_LIKE;
+        else if (TRUE_VALUE.equals(reviewComment.getDislike())) return Comment.REACT_DISLIKE;
+        else if (TRUE_VALUE.equals(reviewComment.getReport())) return Comment.REACT_REPORT;
         else return null;
     }
 }

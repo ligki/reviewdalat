@@ -1,5 +1,6 @@
 package com.ligki.reviewdalat.service;
 
+import com.ligki.reviewdalat.utils.ObjectValidator;
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,4 +11,7 @@ public abstract class BaseService {
 
     @Autowired
     DozerBeanMapper dozerBeanMapper;
+
+    @Autowired
+    ObjectValidator validator;
 }

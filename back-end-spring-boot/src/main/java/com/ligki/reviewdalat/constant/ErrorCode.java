@@ -13,6 +13,8 @@ public class ErrorCode {
     public static String SUCCESS_MESSAGE;
     public static String E0001;
     public static String E0001_MESSAGE;
+    public static String E0002;
+    public static String E0002_MESSAGE;
 
     @Autowired
     public void setFieldsFromProperties(Environment env) throws IllegalAccessException {

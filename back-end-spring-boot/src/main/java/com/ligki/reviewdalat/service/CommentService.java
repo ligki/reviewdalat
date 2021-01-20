@@ -1,7 +1,7 @@
 package com.ligki.reviewdalat.service;
 
 import com.ligki.reviewdalat.model.entity.ReviewComment;
-import com.ligki.reviewdalat.model.httpentity.ErrorResponse;
+import com.ligki.reviewdalat.model.httpentity.SuccessResponse;
 import com.ligki.reviewdalat.model.responsetype.DetailReviewComment;
 import com.ligki.reviewdalat.model.responsetype.NewestComment;
 
@@ -12,5 +12,7 @@ public interface CommentService {
 
     List<DetailReviewComment> getDetailComment(String reviewObjectId);
 
-    ErrorResponse addComment(ReviewComment review);
+    SuccessResponse addComment(ReviewComment review);
+
+    SuccessResponse addCommentReact(ReviewComment review, String type);
 }

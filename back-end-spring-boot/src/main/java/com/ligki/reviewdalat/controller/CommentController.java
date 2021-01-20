@@ -1,6 +1,7 @@
 package com.ligki.reviewdalat.controller;
 
 import com.ligki.reviewdalat.model.entity.ReviewComment;
+import com.ligki.reviewdalat.model.requesttype.CommentReact;
 import com.ligki.reviewdalat.model.requesttype.ReviewCommentAdd;
 import com.ligki.reviewdalat.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,18 @@ public class CommentController extends BaseController {
     }
 
     @PostMapping("/{reviewObjectId}")
-    ResponseEntity<?> addComment(@PathVariable(value = "reviewObjectId", required = true) String reviewObjectId,
-                                 @RequestBody ReviewCommentAdd review) {
+    ResponseEntity<?> addCommentReview(@PathVariable(value = "reviewObjectId") String reviewObjectId,
+                                       @RequestBody ReviewCommentAdd review) {
         ReviewComment rv = dozerBeanMapper.map(review, ReviewComment.class);
         rv.setReviewObjectId(reviewObjectId);
         return handleResponse(commentService.addComment(rv));
+    }
+
+    @PostMapping("/react-comment/{commentId}")
+    ResponseEntity<?> reactComment(@PathVariable(value = "commentId") String commentId,
+                                   @RequestBody CommentReact comment) {
+        ReviewComment rv = dozerBeanMapper.map(comment, ReviewComment.class);
+        rv.setReviewCommentParent(commentId);
+        return handleResponse(commentService.addCommentReact(rv, comment.getType()));
     }
 }

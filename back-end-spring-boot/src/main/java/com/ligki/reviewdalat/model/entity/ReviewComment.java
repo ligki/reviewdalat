@@ -22,6 +22,7 @@ public class ReviewComment {
     String reviewObjectId;
     String point;
     String reviewCommentParent;
+    String comment;
     String context;
     String like;
     String dislike;
