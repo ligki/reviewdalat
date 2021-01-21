@@ -7,7 +7,7 @@
         <div class="header-link">
           <i class="fas fa-home text-primary"></i>
           <span class="text-primary"><a href="/">Trang chủ</a></span>
-          <span>/</span>
+          <span class="mx-1">/</span>
           <span>{{review.name}}</span>
         </div>
       </div>
