@@ -163,6 +163,7 @@ a.tip:hover {
 
 .new-review_content {
   word-break: break-all;
+  white-space: pre-line;
 }
 
 .new-review_header span:first-of-type {

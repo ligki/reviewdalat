@@ -64,11 +64,11 @@
       </div>
 
       <!-- Reviews -->
-      <div class="row border border-primary review" v-for="comment in comments" :key="comment">
+      <div class="row border border-primary review" v-for="comment in comments" :key="comment.id">
         <!-- Review Header -->
         <div class="reviewer my-1">
           <span class="font-weight-bold">{{comment.author}}</span>
-          <span class="element-rating" v-for="index in Number(comment.point)" :key="index" v-bind:index="index">
+          <span class="element-rating" v-for="index in toInt(comment.point)" :key="index">
             <i class="fas fa-star text-warning"></i>
           </span>
           <span class="review-time font-italic">{{comment.last_time}}</span>
@@ -99,7 +99,7 @@
         </div>
 
         <!-- Review Comment -->
-        <div class="review-comment px-3 py-3 border-bottom" v-for="subComment in comment.comments" :key="subComment">
+        <div class="review-comment px-3 py-3 border-bottom" v-for="subComment in comment.comments" :key="subComment.id">
           <div class="review-comment_title pb-2">
             <span class="font-weight-bold">{{subComment.author}}</span>
             <span><i class="fas px-1" v-bind:class="bindIconClass(subComment.react)"></i></span>
@@ -193,7 +193,7 @@
                 </label>
               </div>
               <div v-if="errors.length">
-                <div class="alert alert-warning" v-bind:key="index" v-for="(error, index) in errors">
+                <div class="alert alert-warning" v-bind:key="error" v-for="error in errors">
                   {{error}}
                 </div>
               </div>
@@ -273,7 +273,7 @@
                 </label>
               </div>
               <div v-if="errorsComment.length">
-                <div class="alert alert-warning" v-bind:key="index" v-for="(error, index) in errorsComment">
+                <div class="alert alert-warning" v-bind:key="error" v-for="error in errorsComment">
                   {{error}}
                 </div>
               </div>
@@ -371,6 +371,11 @@ export default {
       if (!floatValue) return 0;
       return floatValue.toString().split('.')[1];
     },
+
+    toInt(value) {
+      return parseInt(value);
+    },
+
     bindIconClass(react) {
       if (react == 'comment') {
         return 'fa-comments text-primary';
