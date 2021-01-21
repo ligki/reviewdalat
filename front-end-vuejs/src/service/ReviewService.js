@@ -18,6 +18,9 @@ class ReviewService {
   retrieveDetail(reviewType, id) {
     return axios.get(UrlCommon.API + "/reviews/" + reviewType + "/" + id);
   }
+  searchReviews(query) {
+    return axios.get(UrlCommon.API + "/reviews/search?query=" + query);
+  }
 }
 
 export default new ReviewService();

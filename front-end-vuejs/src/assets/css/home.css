@@ -232,6 +232,38 @@ a.tip:hover {
   background-color: white;
 }
 
+.search-icon img{
+  width: 30px;
+  height: 30px;
+}
+
+.search-result {
+  background-color: white;
+  height: auto;
+  position: absolute;
+  z-index: 10;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
+.search-result div {
+  text-align: left;
+}
+
+.search-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-input {
+  width: 75%;
+  position: relative;
+}
+
 .site-footer {
   background-color: #26272b;
   padding: 45px 0 20px;
