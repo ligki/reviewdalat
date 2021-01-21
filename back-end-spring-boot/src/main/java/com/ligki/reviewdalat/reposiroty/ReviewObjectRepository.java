@@ -38,4 +38,6 @@ public interface ReviewObjectRepository extends CrudRepository<ReviewObject, Str
     String findTypeById(@Param("id") String id);
 
     Optional<ReviewObject> findById(String id);
+
+    List<ReviewObject> findTop10ByNameContainingIgnoreCase(String query);
 }

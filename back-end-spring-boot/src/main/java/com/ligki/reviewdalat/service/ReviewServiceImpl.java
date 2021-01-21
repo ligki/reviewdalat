@@ -4,10 +4,13 @@ import com.ligki.reviewdalat.constant.ReviewObjectType;
 import com.ligki.reviewdalat.model.entity.ReviewObject;
 import com.ligki.reviewdalat.model.responsetype.DetailReviewObject;
 import com.ligki.reviewdalat.model.responsetype.NewestReviewObject;
+import com.ligki.reviewdalat.model.responsetype.SearchReview;
 import com.ligki.reviewdalat.reposiroty.ReviewObjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -79,6 +82,15 @@ public class ReviewServiceImpl extends BaseService implements ReviewService {
         result.setAllRates(allRates);
         result.setAverageRating(averageRating);
         return result;
+    }
+
+    @Override
+    public List<SearchReview> searchReviews(String query) {
+        if (ObjectUtils.isEmpty(query)) {
+            return Collections.emptyList();
+        }
+        List<ReviewObject> reviewObjects = reviewObjectRepository.findTop10ByNameContainingIgnoreCase(query);
+        return reviewObjects.stream().map(reviewObject -> dozerBeanMapper.map(reviewObject, SearchReview.class)).collect(Collectors.toList());
     }
 
     private String calculateAverageRating(ReviewObject review) {

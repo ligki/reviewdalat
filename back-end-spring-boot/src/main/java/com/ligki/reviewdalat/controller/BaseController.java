@@ -30,7 +30,8 @@ public abstract class BaseController {
      */
     protected ResponseEntity<?> handleResponse(Object response) {
         String url = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getRequestURL().toString();
-        logger.info("Response from {}: {}", url, JsonUtil.toJson(response));
+        String param = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getQueryString();
+        logger.info("Response from {} {}: {}", url, param == null ? "" : param, JsonUtil.toJson(response));
         if (response == null) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new ErrorResponse(ErrorCode.E0001, ErrorCode.E0001_MESSAGE));
         } else {
