@@ -13,9 +13,11 @@
         <input class="form-control form-control-sm" type="text" placeholder="Search" aria-label="Search" v-model="search" v-on:blur="resetReviews()"/>
         <div class="search-result form-control form-control-sm" v-if="reviews.length > 0">
           <div v-for="review in reviews" :key="review.id" class="border-bottom px-1 py-1 mx-1 my-1">
-            <a :href="'/' + mapTypeToPathVariable(review.type) + '/' + review.id" @mouseover="keepReviewsAlive()">
-              <span class="search-icon mr-2"><img :src="review.image_icon"></span>
-              <span class="search-name">{{review.name}}</span>
+            <a :href="'/' + mapTypeToPathVariable(review.type) + '/' + review.id" @mouseover="keepReviewsAlive(true)" @mouseout="keepReviewsAlive(false)">
+              <div>
+                <span class="search-icon mr-2"><img :src="review.image_icon"></span>
+                <span class="search-name">{{review.name}}</span>
+              </div>
             </a>
           </div>
         </div>
@@ -56,8 +58,8 @@ export default {
           this.reviews = response.data;
         })
       },
-      keepReviewsAlive() {
-        this.keepReviews = true;
+      keepReviewsAlive(value) {
+        this.keepReviews = value;
       }
     },
 

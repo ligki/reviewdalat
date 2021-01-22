@@ -294,9 +294,8 @@
 <script>
 export default {
   name: "Not Found",
-  head: {
-    title: "404 - Không tìm thấy trang",
-    link: [{ rel: "icon", href: "/favicon.png" }]
+  title() {
+    return '404 - Không tìm thấy trang'
   }
 }
 </script>

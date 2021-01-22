@@ -13,17 +13,22 @@ const router = new Router({
     {
       path: "/",
       name: "Home",
-      component: () => import("./components/HomePage"),
+      component: () => import("./components/page/HomePage"),
     },
     {
       path: "/:review_object_type(place|coffee-shop|hotel|food)/:id",
       name: "ReviewDetail",
-      component: () => import("./components/ReviewDetailPage"),
+      component: () => import("./components/page/ReviewDetailPage"),
+    },
+    {
+      path: "/news/:id",
+      name: "NewsDetail",
+      component: () => import("./components/page/NewsPage"),
     },
     {
       path: "*",
       name: 'Not Found',
-      component: () => import('./components/common/NotFound')
+      component: () => import('./components/page/NotFound')
     }
   ],
 });

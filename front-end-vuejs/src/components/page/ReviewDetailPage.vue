@@ -297,33 +297,13 @@
 </template>
 
 <script>
-import Header from "./common/Header";
-import Footer from "./common/Footer";
-import ReviewService from "../service/ReviewService";
-import CommentService from '../service/CommentService';
+import Header from "../common/Header";
+import Footer from "../common/Footer";
+import ReviewService from "../../service/ReviewService";
+import CommentService from '../../service/CommentService';
 
 export default {
   name: "ReviewDetailPage",
-  head: {
-    title: "Review Dalat",
-    link: [{ rel: "icon", href: "/favicon.png" }],
-    script: [
-      {
-        type: "text/javascript",
-        src: "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js",
-      },
-      {
-        type: "text/javascript",
-        src:
-          "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js",
-      },
-      {
-        type: "text/javascript",
-        src:
-          "https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js",
-      },
-    ],
-  },
   data() {
     return {
       reviewId: "",
@@ -346,11 +326,13 @@ export default {
       errorsComment: []
     };
   },
+  
   methods: {
     refreshDetail() {
       ReviewService.retrieveDetail(this.reviewType, this.reviewId).then(
         (response) => {
           this.review = response.data;
+          document.title = 'Review ' + this.review.name;
         }
       );
       CommentService.retrieveDetailComment(this.reviewId).then(
@@ -463,7 +445,8 @@ export default {
     this.reviewId = this.$route.params.id;
     this.reviewType = this.$route.params.review_object_type;
     this.refreshDetail();
-  },
+    document.title = "Review Đà Lạt"
+  }
 };
 </script>
 
