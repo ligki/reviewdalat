@@ -11,8 +11,15 @@ import java.lang.reflect.Field;
 public class ErrorCode {
     public static String SUCCESS;
     public static String SUCCESS_MESSAGE;
+    /**
+     * Common and unexpected errors on server
+     */
     public static String E0001;
     public static String E0001_MESSAGE;
+
+    /**
+     * Invalid request
+     */
     public static String E0002;
     public static String E0002_MESSAGE;
 
