@@ -3,16 +3,16 @@ import UrlCommon from "../constant/UrlCommon.js";
 
 class ReviewService {
   // reviewType in: place, coffee-shop, hotel, food
-  retrieveNewest(reviewType) {
-    return axios.get(UrlCommon.API + "/reviews/" + reviewType + "/newest");
+  retrieveNewest(reviewType, page) {
+    return axios.get(UrlCommon.API + "/reviews/" + reviewType + "/newest?page=" + page);
   }
 
-  retrieveBest(reviewType) {
-    return axios.get(UrlCommon.API + "/reviews/" + reviewType + "/best");
+  retrieveBest(reviewType, page) {
+    return axios.get(UrlCommon.API + "/reviews/" + reviewType + "/best?page=" + page);
   }
 
-  retrieveWorst(reviewType) {
-    return axios.get(UrlCommon.API + "/reviews/" + reviewType + "/worst");
+  retrieveWorst(reviewType, page) {
+    return axios.get(UrlCommon.API + "/reviews/" + reviewType + "/worst?page=" + page);
   }
 
   retrieveDetail(reviewType, id) {
@@ -20,6 +20,9 @@ class ReviewService {
   }
   searchReviews(query) {
     return axios.get(UrlCommon.API + "/reviews/search?query=" + query);
+  }
+  retrieveAllPageReviews(reviewType) {
+    return axios.get(UrlCommon.API + "/reviews/" + reviewType + "/all-pages");
   }
 }
 

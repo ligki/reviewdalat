@@ -54,22 +54,31 @@
       <!-- Pagination -->
       <nav aria-label="...">
         <ul class="pagination">
-          <li class="page-item disabled">
-            <span class="page-link">Previous</span>
+          <li class="page-item" :class="(pages.current == 1) ? 'disabled' : ''" v-on:click="showReviewsPrevious(pages.current != 1)">
+            <span class="page-link" >Previous</span>
           </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item" v-if="pages.current != 1" v-on:click="showReviewsOnPage(1)">
+            <span class="page-link">1</span>
+          </li>
           <li class="page-item active">
             <span class="page-link">
-              2
+              {{pages.current}}
               <span class="sr-only">(current)</span>
             </span>
           </li>
-          <li class="page-item">
-            <span class="page-link"> ... </span>
+          <li>
+            <span class="page-item">
+              <form @submit="showReviewsOnInput">
+                <input type="number" class="page-link page-input border border-warning rounded-circle mx-1" placeholder="..." v-model="pages.input" :min="1" :max="pages.allPages">
+                <input type="submit" style="display: none;"/>
+              </form>
+            </span>
           </li>
-          <li class="page-item"><a class="page-link" href="#">99</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
+          <li class="page-item" v-if="pages.current != pages.allPages" v-on:click="showReviewsOnPage(pages.allPages)">
+            <span class="page-link">{{pages.allPages}}</span>
+            </li>
+          <li class="page-item" :class="(pages.current == pages.allPages) ? 'disabled' : ''" v-on:click="showReviewsNext(pages.current != pages.allPages)">
+            <span class="page-link">Next</span>
           </li>
         </ul>
       </nav>
@@ -93,28 +102,44 @@ export default {
       reviewType: this.type,
       reviewElementName: '',
       reviewElementIcon: '',
-      newestReview:[]
+      newestReview:[],
+
+      pages: {
+        status: 'newest',
+        allPages: 0,
+        current: 1,
+        input: 1
+      }
     }
   },
   methods: {
     refreshNewestReview() {
-      ReviewService.retrieveNewest(this.reviewType)
+      ReviewService.retrieveNewest(this.reviewType, this.pages.current)
         .then(response => {
           this.newestReview = response.data;
         });
     },
 
     refreshBestReview() {
-      ReviewService.retrieveBest(this.reviewType)
+      this.pages.status = 'best';
+      ReviewService.retrieveBest(this.reviewType, this.pages.current)
       .then(response => {
         this.newestReview = response.data;
       })
     },
 
     refreshWorstReview() {
-      ReviewService.retrieveWorst(this.reviewType)
+      this.pages.status = 'worst';
+      ReviewService.retrieveWorst(this.reviewType, this.pages.current)
       .then(response => {
         this.newestReview = response.data;
+      })
+    },
+
+    retrieveAllPages() {
+      ReviewService.retrieveAllPageReviews(this.reviewType)
+      .then(response => {
+        this.pages.allPages = response.data.all_pages;
       })
     },
 
@@ -138,6 +163,65 @@ export default {
       
     },
 
+    showReviewsOnInput(e) {
+      e.preventDefault();
+      this.pages.current = this.pages.input;
+      if (this.pages.status == 'newest') {
+        this.refreshNewestReview();
+      }
+      if (this.pages.status == 'best') {
+        this.refreshBestReview();
+      }
+      if (this.pages.status == 'worst') {
+        this.refreshWorstReview();
+      }
+    },
+
+    showReviewsOnPage(value) {
+      this.pages.current = value;
+      if (this.pages.status == 'newest') {
+        this.refreshNewestReview();
+      }
+      if (this.pages.status == 'best') {
+        this.refreshBestReview();
+      }
+      if (this.pages.status == 'worst') {
+        this.refreshWorstReview();
+      }
+    },
+
+    showReviewsPrevious(condition) {
+      if (!condition) {
+        return;
+      }
+      this.pages.current = this.pages.current - 1;
+      if (this.pages.status == 'newest') {
+        this.refreshNewestReview();
+      }
+      if (this.pages.status == 'best') {
+        this.refreshBestReview();
+      }
+      if (this.pages.status == 'worst') {
+        this.refreshWorstReview();
+      }
+    },
+
+    showReviewsNext(condition) {
+      if (!condition) {
+        return;
+      }
+      this.pages.current = this.pages.current + 1;
+      if (this.pages.status == 'newest') {
+        this.refreshNewestReview();
+      }
+      if (this.pages.status == 'best') {
+        this.refreshBestReview();
+      }
+      if (this.pages.status == 'worst') {
+        this.refreshWorstReview();
+      }
+    },
+
     // Example: 4.5 return 4
     getFullStarsRating(floatValue) {
       return parseInt(floatValue.toString().split('.')[0]);
@@ -146,12 +230,17 @@ export default {
     // Example: 4.5 return 5
     getHalfStarsRating(floatValue) {
       return floatValue.toString().split('.')[1];
+    },
+
+    toInt(value) {
+      return parseInt(value);
     }
 
   },
   created() {
     this.refreshElementReview(this.reviewType);
     this.refreshNewestReview();
+    this.retrieveAllPages();
   }
 }
 </script>

@@ -1,6 +1,5 @@
 package com.ligki.reviewdalat.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ligki.reviewdalat.constant.ErrorCode;
 import com.ligki.reviewdalat.model.httpentity.ErrorResponse;
 import com.ligki.reviewdalat.utils.JsonUtil;

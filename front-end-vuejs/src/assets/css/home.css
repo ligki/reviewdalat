@@ -29,7 +29,6 @@ a.tip:hover {
   margin-right: 10px;
   margin-bottom: 1rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   flex-wrap: unset;
 }
@@ -180,6 +179,10 @@ a.tip:hover {
 
 .pagination {
   flex-wrap: wrap;
+}
+
+.page-input {
+  width: 2.5rem;
 }
 
 .review {

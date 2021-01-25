@@ -20,6 +20,8 @@ public abstract class BaseService {
 
     protected static final String BLANK_STRING = "";
 
+    protected static final int LIMIT_PAGE = 10;
+
     /**
      * Validate an object using @annotations in fields
      *
