@@ -177,6 +177,10 @@ a.tip:hover {
   white-space: pre-line;
 }
 
+.news-more:hover {
+  cursor: pointer;
+}
+
 .pagination {
   flex-wrap: wrap;
 }
@@ -528,3 +532,10 @@ a.tip:hover {
 }
 
 /* Slideshow end */
+
+/* Hide input arrows number */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

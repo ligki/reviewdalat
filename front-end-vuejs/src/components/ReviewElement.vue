@@ -74,9 +74,9 @@
               </form>
             </span>
           </li>
-          <li class="page-item" v-if="pages.current != pages.allPages" v-on:click="showReviewsOnPage(pages.allPages)">
+          <li class="page-item" v-if="pages.current < pages.allPages" v-on:click="showReviewsOnPage(pages.allPages)">
             <span class="page-link">{{pages.allPages}}</span>
-            </li>
+          </li>
           <li class="page-item" :class="(pages.current == pages.allPages) ? 'disabled' : ''" v-on:click="showReviewsNext(pages.current != pages.allPages)">
             <span class="page-link">Next</span>
           </li>
@@ -106,7 +106,7 @@ export default {
 
       pages: {
         status: 'newest',
-        allPages: 0,
+        allPages: 1,
         current: 1,
         input: 1
       }
@@ -230,10 +230,6 @@ export default {
     // Example: 4.5 return 5
     getHalfStarsRating(floatValue) {
       return floatValue.toString().split('.')[1];
-    },
-
-    toInt(value) {
-      return parseInt(value);
     }
 
   },
