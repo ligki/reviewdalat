@@ -19,8 +19,9 @@ public class NewsShareServiceImpl extends BaseService implements NewsShareServic
     NewsShareRepository newsShareRepository;
 
     @Override
-    public List<LatestNews> getLatestNews() {
-        return newsShareRepository.findTop10ByOrderByCreatedAsc()
+    public List<LatestNews> getLatestNews(String page) {
+        int offset = mapPageToOffset(page);
+        return newsShareRepository.findAll(offset)
                 .stream()
                 .map(newsShare -> dozerBeanMapper.map(newsShare, LatestNews.class))
                 .collect(Collectors.toList());
@@ -28,9 +29,7 @@ public class NewsShareServiceImpl extends BaseService implements NewsShareServic
 
     @Override
     public NewsDetail getNewsDetail(String newsId) {
-        String errorMsg = validateParameterThenReturnMsg(newsId, (str) -> {
-            return StringUtils.isNumeric(str) && str.length() == 8;
-        }, "newsId is not valid");
+        String errorMsg = validateParameterThenReturnMsg(newsId, (str) -> StringUtils.isNumeric(str) && str.length() == 8, "newsId is not valid");
         validateErrorMsg(errorMsg);
         Optional<NewsShare> newsShareOpt = newsShareRepository.findById(newsId);
         if (newsShareOpt.isEmpty()) {

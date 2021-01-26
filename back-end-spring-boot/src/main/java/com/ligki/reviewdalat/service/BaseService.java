@@ -4,10 +4,12 @@ import com.ligki.reviewdalat.constant.ErrorCode;
 import com.ligki.reviewdalat.exception.ApiException;
 import com.ligki.reviewdalat.utils.Condition;
 import com.ligki.reviewdalat.utils.ObjectValidator;
+import org.apache.commons.lang3.StringUtils;
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
 
 public abstract class BaseService {
     protected static final Logger LOGGER = LoggerFactory.getLogger(BaseService.class);
@@ -47,5 +49,25 @@ public abstract class BaseService {
     protected void validateErrorMsg(String errorMsg) {
         if (!BLANK_STRING.equals(errorMsg))
             throw new ApiException(ErrorCode.E0002, errorMsg);
+    }
+
+    protected int mapPageToPageable(String page) {
+        if (ObjectUtils.isEmpty(page) || !StringUtils.isNumeric(page)) {
+            return 0;
+        } else {
+            int pageInt = Integer.parseInt(page);
+            if (pageInt < 1) return 0;
+            else return pageInt - 1;
+        }
+    }
+
+    protected int mapPageToOffset(String page) {
+        if (ObjectUtils.isEmpty(page) || !StringUtils.isNumeric(page)) {
+            return 0;
+        } else {
+            int pageInt = Integer.parseInt(page);
+            if (pageInt < 1) return 0;
+            else return (pageInt - 1) * LIMIT_PAGE;
+        }
     }
 }

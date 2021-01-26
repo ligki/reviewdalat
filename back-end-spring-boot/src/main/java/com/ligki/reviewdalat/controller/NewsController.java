@@ -3,10 +3,7 @@ package com.ligki.reviewdalat.controller;
 import com.ligki.reviewdalat.service.NewsShareService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/news")
@@ -16,8 +13,8 @@ public class NewsController extends BaseController {
     NewsShareService newsShareService;
 
     @GetMapping("/latest")
-    public ResponseEntity<?> getLatestNews() {
-        return handleResponse(newsShareService.getLatestNews());
+    public ResponseEntity<?> getLatestNews(@RequestParam(value = "page", defaultValue = "1") String page) {
+        return handleResponse(newsShareService.getLatestNews(page));
     }
 
     @GetMapping("/detail/{newsId}")

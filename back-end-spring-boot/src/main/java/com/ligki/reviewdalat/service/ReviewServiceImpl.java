@@ -7,7 +7,6 @@ import com.ligki.reviewdalat.model.responsetype.DetailReviewObject;
 import com.ligki.reviewdalat.model.responsetype.NewestReviewObject;
 import com.ligki.reviewdalat.model.responsetype.SearchReview;
 import com.ligki.reviewdalat.reposiroty.ReviewObjectRepository;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -147,25 +146,5 @@ public class ReviewServiceImpl extends BaseService implements ReviewService {
             return ReviewObjectType.FOOD.getValue();
         }
         return "0";
-    }
-
-    private int mapPageToPageable(String page) {
-        if (ObjectUtils.isEmpty(page) || !StringUtils.isNumeric(page)) {
-            return 0;
-        } else {
-            int pageInt = Integer.parseInt(page);
-            if (pageInt < 1) return 0;
-            else return pageInt - 1;
-        }
-    }
-
-    private int mapPageToOffset(String page) {
-        if (ObjectUtils.isEmpty(page) || !StringUtils.isNumeric(page)) {
-            return 0;
-        } else {
-            int pageInt = Integer.parseInt(page);
-            if (pageInt < 1) return 0;
-            else return (pageInt - 1) * LIMIT_PAGE;
-        }
     }
 }
