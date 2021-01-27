@@ -111,6 +111,8 @@
         </div>
 
       </div>
+
+      <a class="row text-center justify-content-center w-100 text-primary news-more" v-on:click="loadMoreComment()">Xem thêm</a>
     </div>
     <Footer />
     <!-- Modal Write Review -->
@@ -322,6 +324,8 @@ export default {
         id: '',
         type: ''
       },
+
+      page: 1,
       errors: [],
       errorsComment: []
     };
@@ -340,6 +344,11 @@ export default {
           this.comments = response.data;
         }
       )
+    },
+
+    loadMoreComment() {
+      this.page++;
+      
     },
 
     // Example: 4.5 return 4
